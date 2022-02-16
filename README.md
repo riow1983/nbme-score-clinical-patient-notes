@@ -1,6 +1,6 @@
 # nbme-score-clinical-patient-notes
 ![input file image]()<br>
-https://www.kaggle.com/c/petfinder-pawpularity-score/overview<br>
+https://www.kaggle.com/c/nbme-score-clinical-patient-notes<br>
 どんなコンペ?:<br>
 開催期間:<br>
 ![input file image]()<br>
@@ -70,28 +70,39 @@ elif 'google.colab' in sys.modules:
 #### Papers
 |name|url|status|comment|
 |----|----|----|----|
+|Learning to select pseudo labels: a semi-supervised method for named entity recognition|[URL](https://journal.hep.com.cn/ckcest/fitee/EN/10.1631/FITEE.1800743)|アブストのみ読了|PLによるNER訓練の論文らしいがPDFが落とせない|
+
 <br>
 
 
-#### Blogs / Qiita / etc.
+#### Medium / Qiita / other blogs
 |name|url|status|comment|
 |----|----|----|----|
+|CIFAR-10を疑似ラベル（Pseudo-Label）を使った半教師あり学習で分類する|[URL](https://qiita.com/koshian2/items/f4a458466b15bb91c7cb)|読了|PLの使い所がよく分かる. 実装がKerasなのが玉に瑕.|
+|(snorkel) Snorkel — A Weak Supervision System|[URL](https://towardsdatascience.com/snorkel-a-weak-supervision-system-a8943c9b639f)|読了|NLPアノテーションツールsnorkelの紹介|
+|(snorkel) Snorkel and The Dawn of Weakly Supervised Machine Learning|[URL](https://dawn.cs.stanford.edu/2017/05/08/snorkel/)|Keep|NLPアノテーションツールsnorkelの紹介|
 <br>
 
 
 #### Official Documentation or Tutorial
 |name|url|status|comment|
 |----|----|----|----|
+|(spaCy) Training Pipelines & Models|[URL](https://spacy.io/usage/training)|Keep|spaCyによるfine-tune方法|
+|(snorkel) Programmatically Build Training Data|[URL](https://www.snorkel.org/)|Keep|NLPアノテーションツールのsnorkelによるLF(ラベル関数)の多数決システムを使った自動アノテーション方式の説明.<br>PLでは無い.|
+|(skweak) skweak|[URL](https://spacy.io/universe/project/skweak)|Keep|snorkelと同じくLF(ラベル関数)を使った弱学習フレームワークを提案するライブラリ.<br> spaCyと統合されているが使えるのか不明.|
 <br>
 
-#### StackOverflow
+#### StackOverflow / StackExchange / reddit / other discussion boards
 |name|url|status|comment|
 |----|----|----|----|
+|Annotation tools: Prodigy, Doccano, (or others)?|[URL](https://www.reddit.com/r/LanguageTechnology/comments/fefapn/annotation_tools_prodigy_doccano_or_others/)|読了|NLPアノテーションツールの優劣について(本コンペでアノテーションツールは使わないが)|
+|Difference between IOB and IOB2 format?|[URL](https://datascience.stackexchange.com/questions/37824/difference-between-iob-and-iob2-format)|読了|知っていたIOBはIOB2だった|
 <br>
 
 #### GitHub
 |name|url|status|comment|
 |----|----|----|----|
+|(skweak) skweak: Weak supervision for NLP|[URL](https://github.com/NorskRegnesentral/skweak)|Keep|snorkelと同じくLF(ラベル関数)を使った弱学習フレームワークを提案するライブラリ.<br> spaCyと統合されているが使えるのか不明.|
 <br>
 
 #### Hugging Face Platform
@@ -205,18 +216,23 @@ e.g., pn_historyn内の'1 day'という表記は, feature_textの'Duration-x-1-d
                'two day', 'x1 day', 'yesterday'], dtype='<U38')}                                                       ],
 ```
 <br>
-当てはまりそうな手法: BIOスキームのNERタスクのpsuedo-labeling学習<br>
+当てはまりそうな手法: IOB2スキームのNERタスクのpsuedo-labeling学習<br>
 というのもpatient_notes.csvにはtrain.csvに現れていないpn_historyが41146個(patient_notes.csvに収載されているpn_historyの総数は42146個)もあり, これらにはannotation (教師ラベル)が付与されていない. 従って, pseuedo-labelingが有効だと思われる.<br>
-タスクとしてはBIOスキームのNER. ただしBタグのentity種類数は普通にやるとfeature_textの数(=917)となるが, これはやや数が多すぎる気がする. case_numごとにタスクを独立させる場合は1 case_numごとにBタグの種類は平均して9-10程度になるので丁度良いか. これは, testデータにもcase_numは存在しており, testに未知のcase_numが現れることもないと保障されている(cf. 下記引用)ため, case_numごとにNERモデルを作る, というのは理に適っているように思える.<br>
+タスクとしてはIOB2スキームのNER. ただしBタグのentity種類数は普通にやるとfeature_textの数(=917)となるが, これはやや数が多すぎる気がする. case_numごとにタスクを独立させる場合は1 case_numごとにBタグの種類は平均して9-10程度になるので丁度良いか. これは, testデータにもcase_numは存在しており, testに未知のcase_numが現れることもないと保障されている(cf. 下記引用)ため, case_numごとにNERモデルを作る, というのは理に適っているように思える.<br>
+
 > To help you author submission code, we include a few example instances selected from the training set. When your submitted notebook is scored, this example data will be replaced by the actual test data. The patient notes in the test set will be added to the patient_notes.csv file. **These patient notes are from the same clinical cases as the patient notes in the training set.** There are approximately 2000 patient notes in the test set.
 
 > The patient notes in the test set will be added to the patient_notes.csv file.
 
 scoring時にhidden testデータのpn_historyがpatient_notes.csvに追加されるというのはどういうことか. 現時点で除去されているのはリーク防止のためだとすぐに分かるが, なぜわざわざscoring時に追加する必要があるのか?<br>
-これは推論時もpatient_notes.csvを学習プールとしてpseudo-labelingしつつモデルをアップデートできるようにする配慮なのだろうか?
+これは推論時もpatient_notes.csvを学習プールとしてpseudo-labelingしつつモデルをアップデートできるようにする配慮なのだろうか? いや, hidden testの正解ラベルも一緒に供給されない限りは推論時pseudo-labelingは機能しないだろうから, そういうことでも無いか.
 <br>
 <br>
 <br>
+
+#### 2022-02-15
+NERタスクのPL学習の例がKaggle notebookにあった. ただしパフォーマンスが改悪したとして現在は除去された模様. これはPLの不安定さによるものである可能性が高く, うまくやれば改善すると思われる. (autherによる情報操作の可能性もある.)<br>
+https://www.kaggle.com/nbroad/qa-ner-hybrid-train-nbme/comments#1689948
 
 #### 2022-05-03
 結果は/だった. <br>
