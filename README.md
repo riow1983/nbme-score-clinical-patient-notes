@@ -1,9 +1,9 @@
 # nbme-score-clinical-patient-notes
-![input file image]()<br>
+![header](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/header.png)<br>
 https://www.kaggle.com/c/nbme-score-clinical-patient-notes<br>
 どんなコンペ?:<br>
 開催期間:<br>
-![input file image]()<br>
+![input file image](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/timeline.png)<br>
 [結果](#2022-05-03)<br>  
 <br>
 <br>
