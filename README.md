@@ -3,7 +3,7 @@
 https://www.kaggle.com/c/nbme-score-clinical-patient-notes<br>
 どんなコンペ?:<br>
 開催期間:<br>
-![input file image](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/timeline.png)<br>
+![timeline](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/timeline.png)<br>
 [結果](#2022-05-03)<br>  
 <br>
 <br>
@@ -113,6 +113,8 @@ elif 'google.colab' in sys.modules:
 #### Kaggle Notebooks
 |name|url|status|comment|
 |----|----|----|----|
+|QA/NER hybrid train 🚆 [NBME]|[URL](https://www.kaggle.com/nbroad/qa-ner-hybrid-train-nbme/notebook)|Reading|:hugs:transformersによるQA/NERタスク訓練.<br>PLの言及がある. 詳細は[2022-02-15](#2022-02-15).|
+|NBME / Deberta-base baseline [train]|[URL](https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train)|Keep|:hugs:transformersによる
 <br>
 
 #### Kaggle Datasets
@@ -233,6 +235,25 @@ scoring時にhidden testデータのpn_historyがpatient_notes.csvに追加さ�
 #### 2022-02-15
 NERタスクのPL学習の例がKaggle notebookにあった. ただしパフォーマンスが改悪したとして現在は除去された模様. これはPLの不安定さによるものである可能性が高く, うまくやれば改善すると思われる. (autherによる情報操作の可能性もある.)<br>
 https://www.kaggle.com/nbroad/qa-ner-hybrid-train-nbme/comments#1689948
+<br>
+<br>
+<br>
+
+#### 2022-02-17
+本コンペの工程を念頭に置きつつ, 現時点の自分のスキルレベル(データを見て独自解法の考案まではできるが, そこからシームレスに独自解法に沿った実装に直ちに着手できるほどの実装力/知力/意欲はまだまだ乏しいレベル)にfitしたKaggle工程表なるものを考えた:
+- 最初期フェーズ(全工程の16%): 自分なりのEDA, notebook以外の媒体でデータを見る, 独自解法の考案
+- 初期フェーズ(全工程の16%): 公開notebookの内, 優良なものを2,3精読
+- 中期フェーズ(全工程の33%): 独自解法に沿った実装着手
+- 後期フェーズ(全工程の33%): チューニング, アンサンブル
+
+例えば３ヶ月あるコンペでは, 最初期フェーズに2W, 初期フェーズに2W, 中期フェーズに4W, 後期フェーズに4W, をそれぞれ充てる.<br>
+<br>
+本コンペで言うと, 実際に最初期フェーズに対応する作業に2W使用し, 独自解法の考案までには至った. 今日から2月一杯は初期フェーズとして2,3選別した公開notebookを精読していく. これにより独自解法の実装に必要な実装力/知力/意欲を養う. 独自解法に沿った実装に着手するのは3月に入ってからとする.<br>
+<br>
+<br>
+<br>
+
+
 
 #### 2022-05-03
 結果は/だった. <br>
