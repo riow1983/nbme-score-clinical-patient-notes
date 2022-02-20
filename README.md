@@ -28,8 +28,9 @@ https://www.kaggle.com/c/nbme-score-clinical-patient-notes<br>
 
 #### Code
 作成したnotebook等の説明  
-|name|url|input|output|status|comment|
-|----|----|----|----|----|----|
+|name|url|status|comment|
+|----|----|----|----|
+|kagglenb000e-EDA.ipynb|[URL](https://www.kaggle.com/riow1983/kagglenb000e-eda)|Done|データ確認用notebook|
 <br>
 
 
@@ -75,28 +76,33 @@ elif 'google.colab' in sys.modules:
 <br>
 
 
-#### Medium / Qiita / other blogs
+#### Blogs (Medium / Qiita / Others)
 |name|url|status|comment|
 |----|----|----|----|
 |CIFAR-10を疑似ラベル（Pseudo-Label）を使った半教師あり学習で分類する|[URL](https://qiita.com/koshian2/items/f4a458466b15bb91c7cb)|読了|PLの使い所がよく分かる. 実装がKerasなのが玉に瑕.|
 |(snorkel) Snorkel — A Weak Supervision System|[URL](https://towardsdatascience.com/snorkel-a-weak-supervision-system-a8943c9b639f)|読了|NLPアノテーションツールsnorkelの紹介|
 |(snorkel) Snorkel and The Dawn of Weakly Supervised Machine Learning|[URL](https://dawn.cs.stanford.edu/2017/05/08/snorkel/)|Keep|NLPアノテーションツールsnorkelの紹介|
+|(Python) Python map() function|[URL](https://www.journaldev.com/22960/python-map-function)|Done|map関数の使い方|
+|(typing) 実践！！Python型入門(Type Hints)|[URL](https://qiita.com/papi_tokei/items/2a309d313bc6fc5661c3)|Done|typingの使い方|
 <br>
 
 
-#### Official Documentation or Tutorial
+#### Documentation (incl. Tutorial)
 |name|url|status|comment|
 |----|----|----|----|
 |(spaCy) Training Pipelines & Models|[URL](https://spacy.io/usage/training)|Keep|spaCyによるfine-tune方法|
 |(snorkel) Programmatically Build Training Data|[URL](https://www.snorkel.org/)|Keep|NLPアノテーションツールのsnorkelによるLF(ラベル関数)の多数決システムを使った自動アノテーション方式の説明.<br>PLでは無い.|
 |(skweak) skweak|[URL](https://spacy.io/universe/project/skweak)|Keep|snorkelと同じくLF(ラベル関数)を使った弱学習フレームワークを提案するライブラリ.<br> spaCyと統合されているが使えるのか不明.|
+|(:hugs:) DeBERTa|[URL](https://huggingface.co/docs/transformers/model_doc/deberta)|Keep|:hugs:DeBERTaの解説|
 <br>
 
-#### StackOverflow / StackExchange / reddit / other discussion boards
+#### BBC (StackOverflow / StackExchange / Quora / reddit / Others)
 |name|url|status|comment|
 |----|----|----|----|
 |Annotation tools: Prodigy, Doccano, (or others)?|[URL](https://www.reddit.com/r/LanguageTechnology/comments/fefapn/annotation_tools_prodigy_doccano_or_others/)|読了|NLPアノテーションツールの優劣について(本コンペでアノテーションツールは使わないが)|
 |Difference between IOB and IOB2 format?|[URL](https://datascience.stackexchange.com/questions/37824/difference-between-iob-and-iob2-format)|読了|知っていたIOBはIOB2だった|
+|(pandas) How to apply a function to two columns of Pandas dataframe|[URL](https://stackoverflow.com/questions/13331698/how-to-apply-a-function-to-two-columns-of-pandas-dataframe)|Done|pandasで２列以上に同時に関数を適用させる方法|
+|(Python) What does "'\'\r" do in Python?|[URL](https://www.quora.com/What-does-r-do-in-Python)|Done|キャリッジ・リターンについて|
 <br>
 
 #### GitHub
@@ -110,19 +116,19 @@ elif 'google.colab' in sys.modules:
 |----|----|----|----|
 <br>
 
-#### Kaggle Notebooks
+#### Kaggle (Notebooks)
 |name|url|status|comment|
 |----|----|----|----|
-|QA/NER hybrid train 🚆 [NBME]|[URL](https://www.kaggle.com/nbroad/qa-ner-hybrid-train-nbme/notebook)|Reading|:hugs:transformersによるQA/NERタスク訓練.<br>PLの言及がある. 詳細は[2022-02-15](#2022-02-15).|
-|NBME / Deberta-base baseline [train]|[URL](https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train)|Keep|:hugs:transformersによる
+|QA/NER hybrid train 🚆 [NBME]|[URL](https://www.kaggle.com/nbroad/qa-ner-hybrid-train-nbme/notebook)|Reading|:hugs:transformersによるQA/NERタスク訓練 (sequence classification task).<br>PLの言及がある. 詳細は[2022-02-15](#2022-02-15).<br>ただし, このnotebookは多様な言語モデルを扱えるように実装がモジュール化されておりその分可読性が犠牲になっている.|
+|NBME / Deberta-base baseline [train]|[URL](https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train)|Keep|:hugs:transformersによるsequence classification task.|
 <br>
 
-#### Kaggle Datasets
+#### Kaggle (Datasets)
 |name|url|status|comment|
 |----|----|----|----|
 <br>
 
-#### Kaggle Discussion
+#### Kaggle (Discussion)
 |name|url|status|comment|
 |----|----|----|----|
 <br>
@@ -133,13 +139,13 @@ elif 'google.colab' in sys.modules:
 ## Diary
 
 #### 2022-02-05  
-コンペ参加. kagglenb000e-EDAにてデータ確認着手.
+コンペ参加. [kagglenb000e-EDA.ipynb](https://www.kaggle.com/riow1983/kagglenb000e-eda)にてデータ確認着手.
 <br>
 <br>
 <br>
 
 #### 2022-02-08
-kagglenb000e-EDAにて関連テーブルを結合したtrainデータを外部出力しスプレッドシートで一つずつ確認する作業に着手.
+[kagglenb000e-EDA.ipynb](https://www.kaggle.com/riow1983/kagglenb000e-eda)にて関連テーブルを結合したtrainデータを外部出力しスプレッドシートで一つずつ確認する作業に着手.
 <br>
 <br>
 <br>
@@ -191,8 +197,8 @@ case_num=0: 1300 rows
 #### 2022-02-10
 pn_history内の表記によっては, 複数のfeature_textに分類され得る.<br>
 e.g., pn_historyn内の'1 day'という表記は, feature_textの'Duration-x-1-day'にも'1-day-duration-OR-2-days-duration'にも分類されている.<br>
+以下[kagglenb000e-EDA.ipynb](https://www.kaggle.com/riow1983/kagglenb000e-eda)より<br>
 ```
-# kagglenb000e-EDAより
 # [DEFICIENCY_RATE, {FEATURE_TEX: np.array of ANNOTATIONs}]
 
        [0.08,
@@ -233,8 +239,7 @@ scoring時にhidden testデータのpn_historyがpatient_notes.csvに追加さ�
 <br>
 
 #### 2022-02-15
-NERタスクのPL学習の例がKaggle notebookにあった. ただしパフォーマンスが改悪したとして現在は除去された模様. これはPLの不安定さによるものである可能性が高く, うまくやれば改善すると思われる. (autherによる情報操作の可能性もある.)<br>
-https://www.kaggle.com/nbroad/qa-ner-hybrid-train-nbme/comments#1689948
+NERタスクのPL学習の例が[公開notebook](https://www.kaggle.com/nbroad/qa-ner-hybrid-train-nbme/comments#1689948)にあった. ただしパフォーマンスが改悪したとして現在は除去された模様. これはPLの不安定さによるものである可能性が高く, うまくやれば改善すると思われる. (autherによる情報操作の可能性もある.)<br>
 <br>
 <br>
 <br>
