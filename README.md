@@ -72,6 +72,7 @@ elif 'google.colab' in sys.modules:
 |name|url|status|comment|
 |----|----|----|----|
 |Learning to select pseudo labels: a semi-supervised method for named entity recognition|[URL](https://journal.hep.com.cn/ckcest/fitee/EN/10.1631/FITEE.1800743)|アブストのみ読了|PLによるNER訓練の論文らしいがPDFが落とせない|
+|DeBERTa: Decoding-enhanced BERT with Disentangled Attention|[URL](https://arxiv.org/abs/2006.03654)|Keep|-|
 
 <br>
 
@@ -96,7 +97,7 @@ elif 'google.colab' in sys.modules:
 |(:hugs:) DeBERTa|[URL](https://huggingface.co/docs/transformers/model_doc/deberta)|Keep|:hugs:DeBERTaの解説|
 <br>
 
-#### BBC (StackOverflow / StackExchange / Quora / reddit / Others)
+#### BBC (StackOverflow / StackExchange / Quora / Reddit / Others)
 |name|url|status|comment|
 |----|----|----|----|
 |Annotation tools: Prodigy, Doccano, (or others)?|[URL](https://www.reddit.com/r/LanguageTechnology/comments/fefapn/annotation_tools_prodigy_doccano_or_others/)|読了|NLPアノテーションツールの優劣について(本コンペでアノテーションツールは使わないが)|
@@ -247,13 +248,13 @@ NERタスクのPL学習の例が[公開notebook](https://www.kaggle.com/nbroad/q
 #### 2022-02-17
 本コンペの工程を念頭に置きつつ, 現時点の自分のスキルレベル(データを見て独自解法の考案まではできるが, そこからシームレスに独自解法に沿った実装に直ちに着手できるほどの実装力/知力/意欲はまだまだ乏しいレベル)にfitしたKaggle工程表なるものを考えた:
 - 最初期フェーズ(全工程の16%): 自分なりのEDA, notebook以外の媒体でデータを見る, 独自解法の考案
-- 初期フェーズ(全工程の16%): 公開notebookの内, 優良なものを2,3精読
+- 初期フェーズ(全工程の16%): 公開notebookの内, 優良なものを2,3精読 + 関連ライブラリの公式ドキュメント精読
 - 中期フェーズ(全工程の33%): 独自解法に沿った実装着手
 - 後期フェーズ(全工程の33%): submit, 実験, チューニング, アンサンブル
 
 例えば３ヶ月あるコンペでは, 最初期フェーズに2W, 初期フェーズに2W, 中期フェーズに4W, 後期フェーズに4W, をそれぞれ充てる.<br>
 <br>
-本コンペで言うと, 実際に最初期フェーズに対応する作業に2W使用し, 独自解法の考案までには至った. 今日から2月一杯は初期フェーズとして2,3選別した公開notebookを精読していく. これにより独自解法の実装に必要な実装力/知力/意欲を養う. 独自解法に沿った実装に着手するのは3月に入ってからとする.<br>
+本コンペで言うと, 実際に最初期フェーズに対応する作業に2W使用し, 独自解法の考案までには至った. 今日から2月一杯は初期フェーズとして2,3選別した公開notebookを精読 + 関連ライブラリの公式ドキュメントを精読していく. これにより独自解法の実装に必要な実装力/知力/意欲を養う. 独自解法に沿った実装に着手するのは3月に入ってからとする.<br>
 <br>
 <br>
 <br>
