@@ -122,7 +122,7 @@ elif 'google.colab' in sys.modules:
 #### Kaggle (Notebooks)
 |name|url|status|comment|
 |----|----|----|----|
-|QA/NER hybrid train 🚆 [NBME]|[URL](https://www.kaggle.com/nbroad/qa-ner-hybrid-train-nbme/notebook)|Reading|:hugs:transformersによるQA/NERタスク訓練 (sequence classification task).<br>PLの言及がある. 詳細は[2022-02-15](#2022-02-15).<br>ただし, このnotebookは多様な言語モデルを扱えるように実装がモジュール化されておりその分可読性が犠牲になっている.|
+|QA/NER hybrid train 🚆 [NBME]|[URL](https://www.kaggle.com/nbroad/qa-ner-hybrid-train-nbme/notebook)|Reading|:hugs:transformersによるQA/NERタスク訓練 (token classification task).<br>ただしAutoModelによるbody + FNヘッドによるtoken classificationであり, [AutoModelForTokenClassification](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForTokenClassification)によるものでは無い.<br>PLの言及がある. 詳細は[2022-02-15](#2022-02-15).<br>多様な言語モデルを扱えるように実装がモジュール化されておりその分可読性が犠牲になっている.|
 |NBME / Deberta-base baseline [train]|[URL](https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train)|Keep|:hugs:transformersによるtoken classification task.<br>ただしAutoModelによるbody + FNヘッドによるtoken classificationであり, [AutoModelForTokenClassification](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForTokenClassification)によるものでは無い点が面白い.|
 <br>
 
