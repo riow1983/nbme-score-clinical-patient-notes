@@ -95,6 +95,8 @@ elif 'google.colab' in sys.modules:
 |(snorkel) Programmatically Build Training Data|[URL](https://www.snorkel.org/)|Keep|NLPアノテーションツールのsnorkelによるLF(ラベル関数)の多数決システムを使った自動アノテーション方式の説明.<br>PLでは無い.|
 |(skweak) skweak|[URL](https://spacy.io/universe/project/skweak)|Keep|snorkelと同じくLF(ラベル関数)を使った弱学習フレームワークを提案するライブラリ.<br> spaCyと統合されているが使えるのか不明.|
 |(:hugs:) DeBERTa|[URL](https://huggingface.co/docs/transformers/model_doc/deberta)|Keep|:hugs:DeBERTaの解説|
+|(:hugs:) Summary of the tasks|[URL](https://huggingface.co/docs/transformers/task_summary)|Done|pipeline及びAutoModelFor{task name}によるinferenceのexample.<br>しかしAutoModel+fine-tuningのexampleは無い.|
+|(:hugs:) Auto Classes|[URL](https://huggingface.co/docs/transformers/model_doc/auto#auto-classes)|Done|AutoConfig, AutoModel, AutoTokenizerがあれば他に何もいらない|
 <br>
 
 #### BBC (StackOverflow / StackExchange / Quora / Reddit / Others)
@@ -121,7 +123,7 @@ elif 'google.colab' in sys.modules:
 |name|url|status|comment|
 |----|----|----|----|
 |QA/NER hybrid train 🚆 [NBME]|[URL](https://www.kaggle.com/nbroad/qa-ner-hybrid-train-nbme/notebook)|Reading|:hugs:transformersによるQA/NERタスク訓練 (sequence classification task).<br>PLの言及がある. 詳細は[2022-02-15](#2022-02-15).<br>ただし, このnotebookは多様な言語モデルを扱えるように実装がモジュール化されておりその分可読性が犠牲になっている.|
-|NBME / Deberta-base baseline [train]|[URL](https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train)|Keep|:hugs:transformersによるsequence classification task.|
+|NBME / Deberta-base baseline [train]|[URL](https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train)|Keep|:hugs:transformersによるtoken classification task.<br>ただしAutoModelによるbody + FNヘッドによるtoken classificationであり, [AutoModelForTokenClassification](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForTokenClassification)によるものでは無い点が面白い.|
 <br>
 
 #### Kaggle (Datasets)
