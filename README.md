@@ -281,7 +281,7 @@ QAタスクの場合, tokenizerのtext(first sentence)にquestionを, text_pair(
 https://github.com/huggingface/transformers/blob/0187c6f0ad6c0e76c8206edeb72b94ff036df4ff/examples/pytorch/question-answering/run_qa_no_trainer.py#L397-L406
 <br><br>
 一方, 参照中の[NBME / Deberta-base baseline [train]](https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train)では, tokenizerのtext(first sentence)にpn_historyを, text_pair(second sentence)にfeature_textを配置している.<br>
-<iframe src="https://www.kaggle.com/embed/yasufuminakama/nbme-deberta-base-baseline-train?cellIds=26&kernelSessionId=87264998" height="300" style="margin: 0 auto; width: 100%; max-width: 950px;" frameborder="0" scrolling="auto" title="NBME / Deberta-base baseline [train]"></iframe>
+<a src="https://www.kaggle.com/embed/yasufuminakama/nbme-deberta-base-baseline-train?cellIds=26&kernelSessionId=87264998" height="300" style="margin: 0 auto; width: 100%; max-width: 950px;" frameborder="0" scrolling="auto" title="NBME / Deberta-base baseline [train]"></a>
 <br>
 https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train?scriptVersionId=87264998&cellId=26
 <br><br>
