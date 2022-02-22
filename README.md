@@ -31,6 +31,7 @@ https://www.kaggle.com/c/nbme-score-clinical-patient-notes<br>
 |name|url|status|comment|
 |----|----|----|----|
 |kagglenb000e-EDA.ipynb|[URL](https://www.kaggle.com/riow1983/kagglenb000e-eda)|Done|データ確認用notebook|
+|kagglenb001t-token-classifier.ipynb|[URL]()|作成中|:hugs:transformersによるtoken-classification訓練|
 <br>
 
 
@@ -112,6 +113,8 @@ elif 'google.colab' in sys.modules:
 |name|url|status|comment|
 |----|----|----|----|
 |(skweak) skweak: Weak supervision for NLP|[URL](https://github.com/NorskRegnesentral/skweak)|Keep|snorkelと同じくLF(ラベル関数)を使った弱学習フレームワークを提案するライブラリ.<br> spaCyと統合されているが使えるのか不明.|
+|(:hugs:) huggingface/transformers|[URL](https://github.com/huggingface/transformers/tree/master/examples/pytorch)|Keep|タスクごとのデータ構造を知りたくなったらここ|
+
 <br>
 
 #### Hugging Face Platform
@@ -122,8 +125,8 @@ elif 'google.colab' in sys.modules:
 #### Kaggle (Notebooks)
 |name|url|status|comment|
 |----|----|----|----|
-|QA/NER hybrid train 🚆 [NBME]|[URL](https://www.kaggle.com/nbroad/qa-ner-hybrid-train-nbme/notebook)|Reading|:hugs:transformersによるQA/NERタスク訓練 (token classification task).<br>ただしAutoModelによるbody + FNヘッドによるtoken classificationであり, [AutoModelForTokenClassification](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForTokenClassification)によるものでは無い.<br>PLの言及がある. 詳細は[2022-02-15](#2022-02-15).<br>多様な言語モデルを扱えるように実装がモジュール化されておりその分可読性が犠牲になっている.|
-|NBME / Deberta-base baseline [train]|[URL](https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train)|Keep|:hugs:transformersによるtoken classification task.<br>ただしAutoModelによるbody + FNヘッドによるtoken classificationであり, [AutoModelForTokenClassification](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForTokenClassification)によるものでは無い点が面白い.|
+|QA/NER hybrid train 🚆 [NBME]|[URL](https://www.kaggle.com/nbroad/qa-ner-hybrid-train-nbme/notebook)|Reading|:hugs:transformersによるQA/NERタスク訓練 (token classification task).<br>ただしAutoModelによるbody + リニアヘッドによるtoken classificationであり, [AutoModelForTokenClassification](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForTokenClassification)によるものでは無い.<br>PLの言及がある. 詳細は[2022-02-15](#2022-02-15).<br>多様な言語モデルを扱えるように実装がモジュール化されておりその分可読性が犠牲になっている.|
+|NBME / Deberta-base baseline [train]|[URL](https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train)|Keep|:hugs:transformersによるtoken classification task.<br>ただしAutoModelによるbody + リニアヘッドによるtoken classificationであり, [AutoModelForTokenClassification](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForTokenClassification)によるものでは無い点が面白い.|
 <br>
 
 #### Kaggle (Datasets)
@@ -229,7 +232,7 @@ e.g., pn_historyn内の'1 day'という表記は, feature_textの'Duration-x-1-d
 <br>
 当てはまりそうな手法: IOB2スキームのNERタスクのpsuedo-labeling学習<br>
 というのもpatient_notes.csvにはtrain.csvに現れていないpn_historyが41146個(patient_notes.csvに収載されているpn_historyの総数は42146個)もあり, これらにはannotation (教師ラベル)が付与されていない. 従って, pseuedo-labelingが有効だと思われる.<br>
-タスクとしてはIOB2スキームのNER. ただしBタグのentity種類数は普通にやるとfeature_textの数(=917)となるが, これはやや数が多すぎる気がする. case_numごとにタスクを独立させる場合は1 case_numごとにBタグの種類は平均して9-10程度になるので丁度良いか. これは, testデータにもcase_numは存在しており, testに未知のcase_numが現れることもないと保障されている(cf. 下記引用)ため, case_numごとにNERモデルを作る, というのは理に適っているように思える.<br>
+タスクとしてはIOB2スキームのNER. ただしentity種類数は普通にやるとfeature_textの数(=917)となるが, これはやや数が多すぎる気がする. case_numごとにタスクを独立させる場合は1 case_numごとにentity種類数は平均して9-10程度になるので丁度良いか. これは, testデータにもcase_numは存在しており, testに未知のcase_numが現れることもないと保障されている(cf. 下記引用)ため, case_numごとにNERモデルを作る, というのは理に適っているように思える.<br>
 
 > To help you author submission code, we include a few example instances selected from the training set. When your submitted notebook is scored, this example data will be replaced by the actual test data. The patient notes in the test set will be added to the patient_notes.csv file. **These patient notes are from the same clinical cases as the patient notes in the training set.** There are approximately 2000 patient notes in the test set.
 
@@ -261,7 +264,27 @@ NERタスクのPL学習の例が[公開notebook](https://www.kaggle.com/nbroad/q
 <br>
 <br>
 
-
+#### 2022-02-22
+QAタスクの場合, tokenizerのtext(first sentence)にquestionを, text_pair(second sentence)にcontextを配置する.<br>
+```python
+        tokenized_examples = tokenizer(
+            examples[question_column_name if pad_on_right else context_column_name],
+            examples[context_column_name if pad_on_right else question_column_name],
+            truncation="only_second" if pad_on_right else "only_first",
+            max_length=max_seq_length,
+            stride=args.doc_stride,
+            return_overflowing_tokens=True,
+            return_offsets_mapping=True,
+            padding="max_length" if args.pad_to_max_length else False,
+        )
+```
+https://github.com/huggingface/transformers/blob/0187c6f0ad6c0e76c8206edeb72b94ff036df4ff/examples/pytorch/question-answering/run_qa_no_trainer.py#L397-L406
+<br>
+一方, 参照中の[NBME / Deberta-base baseline [train]](https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train)では, tokenizerのtext(first sentence)にpn_historyを, text_pair(second sentence)にfeature_textを配置している.<br>
+<iframe src="https://www.kaggle.com/embed/yasufuminakama/nbme-deberta-base-baseline-train?cellIds=26&kernelSessionId=87264998" height="300" style="margin: 0 auto; width: 100%; max-width: 950px;" frameborder="0" scrolling="auto" title="NBME / Deberta-base baseline [train]"></iframe><br>
+https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train?scriptVersionId=87264998&cellId=26
+<br>
+なぜか? 逆では無いのか?
 
 #### 2022-05-03
 結果は/だった. <br>
