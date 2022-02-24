@@ -316,8 +316,7 @@ https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train?scriptVer
 #### 2022-02-24
 各feature_textについて, 複数のcase_numで同一feature_textが出現する頻度というのはどのくらいだろうか?<br>
 もしcase_numごとでfeature_textが全く共有されていないのであれば, case_numごとのモデルを作る意義はあるかも知れないが, かなり共有されているようであればむしろcase_numで分けずに一つのモデルを作る方が理に適っていると思われる.<br>
-→ exact matchではほとんど共有されていない.<br>
-https://www.kaggle.com/riow1983/kagglenb000e-eda?scriptVersionId=88607298#How-many-feature_texts-are-shared-across-case_num?<br>
+→ [exact matchではほとんど共有されていない.](https://www.kaggle.com/riow1983/kagglenb000e-eda?scriptVersionId=88607298#How-many-feature_texts-are-shared-across-case_num?)<br>
 それでも, catastrophy forgettingのこともあるので, case_numごとにモデルを作るというのは擬似ラベル学習をするならばやってみる価値はあるように思われる.<br>
 <br>
 ところで自分で作ったEDA notebookは[Diary](#Diary)と同じく毎日見た方が良い. そうしないと忘れる.
