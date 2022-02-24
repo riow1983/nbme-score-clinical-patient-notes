@@ -68,6 +68,27 @@ elif 'google.colab' in sys.modules:
 ```
 <br>
 
+```python
+# pandas
+
+>>> df = pd.DataFrame({"A":["a1", "a2", "a3"], "B":["b1", "b2", "b3"]})
+>>> df
+    A   B
+0  a1  b1
+1  a2  b2
+2  a3  b3
+>>> predictions = [[0, 1],[1,2],[2,3]]
+>>> predictions
+[[0, 1], [1, 2], [2, 3]]
+>>> df[[0,1]] = predictions
+>>> df
+    A   B  0  1
+0  a1  b1  0  1
+1  a2  b2  1  2
+2  a3  b3  2  3
+```
+<br>
+
 
 #### Papers
 |name|url|status|comment|
@@ -86,6 +107,8 @@ elif 'google.colab' in sys.modules:
 |(snorkel) Snorkel and The Dawn of Weakly Supervised Machine Learning|[URL](https://dawn.cs.stanford.edu/2017/05/08/snorkel/)|Keep|NLPアノテーションツールsnorkelの紹介|
 |(Python) Python map() function|[URL](https://www.journaldev.com/22960/python-map-function)|Done|map関数の使い方|
 |(typing) 実践！！Python型入門(Type Hints)|[URL](https://qiita.com/papi_tokei/items/2a309d313bc6fc5661c3)|Done|typingの使い方|
+|(PyTorch) 小ネタ：Pytorch で Automatic Mixed Precision (AMP) の ON/OFF をするときの話|[URL](https://tawara.hatenablog.com/entry/2021/05/31/220936)|Done|`torch.cuda.amp`のON/OFF実装小ワザ|
+|(PyTorch) [GPUを簡単に高速化・省メモリ化] NVIDIAのapex.ampがPyTorchに統合されたようです|[URL](https://qiita.com/Sosuke115/items/40265e6aaf2e414e2fea)|Done|apexってNVIDIAのAMP機能のことだったのね|
 <br>
 
 
@@ -283,7 +306,24 @@ https://github.com/huggingface/transformers/blob/0187c6f0ad6c0e76c8206edeb72b94f
 一方, 参照中の[NBME / Deberta-base baseline [train]](https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train)では, tokenizerのtext(first sentence)にpn_historyを, text_pair(second sentence)にfeature_textを配置している.<br>
 https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train?scriptVersionId=87264998&cellId=26
 <br><br>
-なぜか? 逆では無いのか?
+なぜか? 逆では無いのか?<br>
+恐らく, first sentenceに照合文たるpn_historyを配置しても何ら差し支えなく, どちらでも良いということだと思う. 面白い.<br>
+それどころか, それによりlabelにはpn_historyのみ供給すれば良く, locationがsecond sentenceの長さでoffsetされることが無いため, むしろ照合文はfirst sentenceに配置するほうが便利ですらあるのかも知れない.<br>
+<br>
+<br>
+<br>
+
+#### 2022-02-24
+各feature_textについて, 複数のcase_numで同一feature_textが出現する頻度というのはどのくらいだろうか?<br>
+もしcase_numごとでfeature_textが全く共有されていないのであれば, case_numごとのモデルを作る意義はあるかも知れないが, かなり共有されているようであればむしろcase_numで分けずに一つのモデルを作る方が理に適っていると思われる.<br>
+→ exact matchではほとんど共有されていない.<br>
+https://www.kaggle.com/riow1983/kagglenb000e-eda?scriptVersionId=88607298#How-many-feature_texts-are-shared-across-case_num?<br>
+それでも, catastrophy forgettingのこともあるので, case_numごとにモデルを作るというのは擬似ラベル学習をするならばやってみる価値はあるように思われる.<br>
+<br>
+ところで自分で作ったEDA notebookは[Diary](#Diary)と同じく毎日見た方が良い. そうしないと忘れる.
+<br>
+<br>
+<br>
 
 #### 2022-05-03
 結果は/だった. <br>
