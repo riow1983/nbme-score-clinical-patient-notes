@@ -319,10 +319,15 @@ https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train?scriptVer
 → [exact matchではほとんど共有されていない.](https://www.kaggle.com/riow1983/kagglenb000e-eda?scriptVersionId=88607298#How-many-feature_texts-are-shared-across-case_num?)<br>
 それでも, catastrophy forgettingのこともあるので, case_numごとにモデルを作るというのは擬似ラベル学習をするならばやってみる価値はあるように思われる.<br>
 <br>
-ところで自分で作ったEDA notebookは[Diary](#Diary)と同じく毎日見た方が良い. そうしないと忘れる.
+ところで自分で作ったEDA notebookは[Diary](#Diary)と同じく毎日見た方が良い. そうしないと忘れる.<br>
+<br>
+Pseudo-labelingのアルゴリズムについて:<br>
+Step 1) case_numごとにモデル(弱学習器)を作り, pn_notes(unlabeld data)のcase_numごとに弱学習器で擬似ラベルを付与.<br>
+Step 2) 擬似ラベルが付与されたpn_notesをtrainに縦結合し, 擬似ラベルと通常ラベルを一緒に通常の学習(case_numごとではなく統一モデルの訓練)を開始.<br>
 <br>
 <br>
 <br>
+
 
 #### 2022-05-03
 結果は/だった. <br>
