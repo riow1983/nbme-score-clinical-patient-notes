@@ -15,6 +15,8 @@ pytorch-xla-env-setup.py
 /input
 /notebooks/setup_kaggle.ipynb
 *.h5
+/notebooks/nb001t-token-classifier/*
+!/notebooks/nb001t-token-classifier/.gitkeep
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

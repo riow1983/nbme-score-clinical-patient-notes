@@ -10,6 +10,7 @@ https://www.kaggle.com/c/nbme-score-clinical-patient-notes<br>
 <br>
 ***
 ## 実験管理テーブル
+https://wandb.ai/riow1983/NBME-Public?workspace=user-riow1983
 |commitSHA|comment|Local CV|Public LB|
 |----|----|----|----|
 <br>
@@ -23,8 +24,9 @@ https://www.kaggle.com/c/nbme-score-clinical-patient-notes<br>
 ## My Assets
 [notebook命名規則]  
 - kagglenb001{e,t,i}-hoge.ipynb: Kaggle platform上で新規作成されたKaggle notebook (kernel).
-- localnb001{e,t,i}-hoge.ipynb: localで新規作成されたnotebook. 
+- nb001{e,t,i}-hoge.ipynb: localで新規作成されたnotebook. 
 - {e:EDA, t:train, i:inference}
+- kaggle platform上で新規作成され, localで編集を加えるnotebookはファイル名kagglenbをnbに変更し, 番号は変更しない.
 
 #### Code
 作成したnotebook等の説明  
@@ -121,6 +123,8 @@ elif 'google.colab' in sys.modules:
 |(:hugs:) DeBERTa|[URL](https://huggingface.co/docs/transformers/model_doc/deberta)|Keep|:hugs:DeBERTaの解説|
 |(:hugs:) Summary of the tasks|[URL](https://huggingface.co/docs/transformers/task_summary)|Done|pipeline及びAutoModelFor{task name}によるinferenceのexample.<br>しかしAutoModel+fine-tuningのexampleは無い.|
 |(:hugs:) Auto Classes|[URL](https://huggingface.co/docs/transformers/model_doc/auto#auto-classes)|Done|AutoConfig, AutoModel, AutoTokenizerがあれば他に何もいらない|
+|(W&B) Launch Experiments with wandb.init|[URL](https://docs.wandb.ai/guides/track/launch)|Keep|W&Bを使った実験管理についての公式ドキュメント|
+|(W&B) wandb.init|[URL](https://docs.wandb.ai/ref/python/init)|Done|wandb.initに渡せる引数一覧|
 <br>
 
 #### BBC (StackOverflow / StackExchange / Quora / Reddit / Others)
@@ -150,6 +154,7 @@ elif 'google.colab' in sys.modules:
 |----|----|----|----|
 |QA/NER hybrid train 🚆 [NBME]|[URL](https://www.kaggle.com/nbroad/qa-ner-hybrid-train-nbme/notebook)|Reading|:hugs:transformersによるQA/NERタスク訓練 (token classification task).<br>ただしAutoModelによるbody + リニアヘッドによるtoken classificationであり, [AutoModelForTokenClassification](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForTokenClassification)によるものでは無い.<br>PLの言及がある. 詳細は[2022-02-15](#2022-02-15).<br>多様な言語モデルを扱えるように実装がモジュール化されておりその分可読性が犠牲になっている.|
 |NBME / Deberta-base baseline [train]|[URL](https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train)|Keep|:hugs:transformersによるtoken classification task.<br>ただしAutoModelによるbody + リニアヘッドによるtoken classificationであり, [AutoModelForTokenClassification](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForTokenClassification)によるものでは無い点が面白い.|
+|NBME / pip wheels|[URL](https://www.kaggle.com/yasufuminakama/nbme-pip-wheels)|Done|:hugs:transformersとtokenizersの特定バージョンのwhlファイル|
 <br>
 
 #### Kaggle (Datasets)
@@ -327,6 +332,9 @@ Step 2) 擬似ラベルが付与されたpn_notesをtrainに縦結合し, 擬似
 <br>
 <br>
 <br>
+
+#### 2022-02-25
+case_num==0だけで訓練したモデルのcase_num==0だけの評価はCVで0.84だった. これと比較して, 統一訓練モデルのcase_num==0だけの評価がCVでどうなっているのか確認しておいた方が良い気がする.
 
 
 #### 2022-05-03
