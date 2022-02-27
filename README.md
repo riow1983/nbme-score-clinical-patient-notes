@@ -347,7 +347,7 @@ case_num==0だけで訓練したモデルのcase_num==0だけの評価はCVで0.
 <br>
 <br>
 <br>
-
+Back to [Top](#nbme-score-clinical-patient-notes)
 
 
 
