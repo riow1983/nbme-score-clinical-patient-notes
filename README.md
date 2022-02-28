@@ -53,6 +53,10 @@ function ClickConnect(){
 setInterval(ClickConnect, 60000)
 ```
 <br>
+```
+$ watch -n 1 "nvidia-smi"
+```
+<br>
 
 ```python
 # PyTorch device
@@ -335,9 +339,35 @@ Step 2) 擬似ラベルが付与されたpn_notesをtrainに縦結合し, 擬似
 <br>
 
 #### 2022-02-25
-case_num 0だけで訓練したモデルのcase_num 0だけの評価はCVで0.84だった. これと比較して, 統一訓練モデルの, case_num 0だけの評価がCVでどうなっているのか確認しておいた方が良い気がする.<br>
+case_num 0だけで訓練したモデルのcase_num 0だけの評価はCVで0.84だった. 
+```
+# trained on & evaluated by case_num 0
+
+========== fold: 0 result ==========
+Score: 0.8658
+
+========== fold: 1 result ==========
+Score: 0.8453
+
+========== fold: 2 result ==========
+Score: 0.8395
+
+========== fold: 3 result ==========
+Score: 0.8449
+
+========== fold: 4 result ==========
+Score: 0.8447
+
+========== CV ==========
+Score: 0.8479
+```
+
+
+これと比較して, 統一訓練モデルの, case_num 0だけの評価がCVでどうなっているのか確認しておいた方が良い気がする.<br>
 その結果↓<br>
 ```
+# trained on & evaluated by case_num all
+
 ========== fold: 0 result ==========
 Score: 0.8638
 
