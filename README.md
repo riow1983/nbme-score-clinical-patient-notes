@@ -155,6 +155,7 @@ elif 'google.colab' in sys.modules:
 |QA/NER hybrid train 🚆 [NBME]|[URL](https://www.kaggle.com/nbroad/qa-ner-hybrid-train-nbme/notebook)|Reading|:hugs:transformersによるQA/NERタスク訓練 (token classification task).<br>ただしAutoModelによるbody + リニアヘッドによるtoken classificationであり, [AutoModelForTokenClassification](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForTokenClassification)によるものでは無い.<br>PLの言及がある. 詳細は[2022-02-15](#2022-02-15).<br>多様な言語モデルを扱えるように実装がモジュール化されておりその分可読性が犠牲になっている.|
 |NBME / Deberta-base baseline [train]|[URL](https://www.kaggle.com/yasufuminakama/nbme-deberta-base-baseline-train)|Keep|:hugs:transformersによるtoken classification task.<br>ただしAutoModelによるbody + リニアヘッドによるtoken classificationであり, [AutoModelForTokenClassification](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForTokenClassification)によるものでは無い点が面白い.|
 |NBME / pip wheels|[URL](https://www.kaggle.com/yasufuminakama/nbme-pip-wheels)|Done|:hugs:transformersとtokenizersの特定バージョンのwhlファイル|
+|YoloV5 Pseudo Labeling|[URL](https://www.kaggle.com/nvnnghia/yolov5-pseudo-labeling/notebook)|Done|PL実装の参考例の一つとして|
 <br>
 
 #### Kaggle (Datasets)
@@ -335,6 +336,36 @@ Step 2) 擬似ラベルが付与されたpn_notesをtrainに縦結合し, 擬似
 
 #### 2022-02-25
 case_num==0だけで訓練したモデルのcase_num==0だけの評価はCVで0.84だった. これと比較して, 統一訓練モデルのcase_num==0だけの評価がCVでどうなっているのか確認しておいた方が良い気がする.<br>
+その結果↓<br>
+```
+========== fold: 0 result ==========
+Score: 0.8638
+
+========== fold: 1 result ==========
+Score: 0.8604
+
+========== fold: 2 result ==========
+Score: 0.8611
+
+========== fold: 3 result ==========
+Score: 0.8542
+
+========== fold: 4 result ==========
+Score: 0.8613
+
+========== CV ==========
+Score of case_num 0: 0.8677
+Score of case_num 1: 0.8708
+Score of case_num 2: 0.8197
+Score of case_num 3: 0.8936
+Score of case_num 4: 0.8862
+Score of case_num 5: 0.7970
+Score of case_num 6: 0.8873
+Score of case_num 7: 0.8433
+Score of case_num 8: 0.8846
+Score of case_num 9: 0.8934
+```
+これを見ると, case_num==0も統一訓練モデルの方が精度が高いようだ.
 <br>
 [git commit SHAとwandbの連動については自動で行われる](https://docs.wandb.ai/guides/track/launch#how-can-i-save-the-git-commit-associated-with-my-run)ことが分かった. wandb.run直前のgit SHAがwandb run pageに拾われるので, パラメータをfixさせたら実験を実行する前に必ずgit pushしておくこと.
 
