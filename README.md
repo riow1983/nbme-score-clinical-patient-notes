@@ -335,7 +335,7 @@ Step 2) 擬似ラベルが付与されたpn_notesをtrainに縦結合し, 擬似
 <br>
 
 #### 2022-02-25
-case_num==0だけで訓練したモデルのcase_num==0だけの評価はCVで0.84だった. これと比較して, 統一訓練モデルのcase_num==0だけの評価がCVでどうなっているのか確認しておいた方が良い気がする.<br>
+case_num 0だけで訓練したモデルのcase_num 0だけの評価はCVで0.84だった. これと比較して, 統一訓練モデルの, case_num 0だけの評価がCVでどうなっているのか確認しておいた方が良い気がする.<br>
 その結果↓<br>
 ```
 ========== fold: 0 result ==========
@@ -365,7 +365,7 @@ Score of case_num 7: 0.8433
 Score of case_num 8: 0.8846
 Score of case_num 9: 0.8934
 ```
-これを見ると, case_num==0も統一訓練モデルの方が精度が高いようだ.
+これを見ると, case_num 0のスコアは0.8677となっており, case_num 0だけの評価でも統一訓練モデルの方が精度が高いようだ.
 <br>
 [git commit SHAとwandbの連動については自動で行われる](https://docs.wandb.ai/guides/track/launch#how-can-i-save-the-git-commit-associated-with-my-run)ことが分かった. wandb.run直前のgit SHAがwandb run pageに拾われるので, パラメータをfixさせたら実験を実行する前に必ずgit pushしておくこと.
 
