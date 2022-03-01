@@ -346,22 +346,22 @@ Step 2) 擬似ラベルが付与されたpn_notesをtrainに縦結合し, 擬似
 # trained on & evaluated by case_num 0
 
 ========== fold: 0 result ==========
-Score: 0.8658
+Score: 0.8617
 
 ========== fold: 1 result ==========
-Score: 0.8453
+Score: 0.8534
 
 ========== fold: 2 result ==========
-Score: 0.8395
+Score: 0.8459
 
 ========== fold: 3 result ==========
-Score: 0.8449
+Score: 0.8488
 
 ========== fold: 4 result ==========
-Score: 0.8447
+Score: 0.8396
 
 ========== CV ==========
-Score: 0.8479
+Score: 0.8497
 
 
 
