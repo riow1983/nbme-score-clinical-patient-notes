@@ -53,6 +53,7 @@ function ClickConnect(){
 setInterval(ClickConnect, 60000)
 ```
 <br>
+
 ```
 $ watch -n 1 "nvidia-smi"
 ```
@@ -138,6 +139,7 @@ elif 'google.colab' in sys.modules:
 |Difference between IOB and IOB2 format?|[URL](https://datascience.stackexchange.com/questions/37824/difference-between-iob-and-iob2-format)|読了|知っていたIOBはIOB2だった|
 |(pandas) How to apply a function to two columns of Pandas dataframe|[URL](https://stackoverflow.com/questions/13331698/how-to-apply-a-function-to-two-columns-of-pandas-dataframe)|Done|pandasで２列以上に同時に関数を適用させる方法|
 |(Python) What does "'\'\r" do in Python?|[URL](https://www.quora.com/What-does-r-do-in-Python)|Done|キャリッジ・リターンについて|
+|(Colab) Just got Colab Pro, how can I ensure that processes remain running after closing the notebook?|[URL](https://www.reddit.com/r/GoogleColab/comments/q4s7jh/just_got_colab_pro_how_can_i_ensure_that/)|Done|Colab Pro+でbackground executionが実行されていることを確認するには|
 <br>
 
 #### GitHub
@@ -339,7 +341,7 @@ Step 2) 擬似ラベルが付与されたpn_notesをtrainに縦結合し, 擬似
 <br>
 
 #### 2022-02-25
-case_num 0だけで訓練したモデルのcase_num 0だけの評価はCVで0.84だった. 
+各case_numだけで訓練したモデルの当該case_numだけの評価はCVで以下の通り:<br> 
 ```
 # trained on & evaluated by case_num 0
 
@@ -360,11 +362,31 @@ Score: 0.8447
 
 ========== CV ==========
 Score: 0.8479
+
+
+
+# trained on & evaluated by case_num 1
+
+========== fold: 0 result ==========
+Score: 0.8109
+
+========== fold: 1 result ==========
+Score: 0.8715
+
+========== fold: 2 result ==========
+Score: 0.8281
+
+========== fold: 3 result ==========
+Score: 0.8265
+
+========== fold: 4 result ==========
+Score: 0.8357
+
+========== CV ==========
+Score: 0.8359
 ```
-
-
-これと比較して, 統一訓練モデルの, case_num 0だけの評価がCVでどうなっているのか確認しておいた方が良い気がする.<br>
-その結果↓<br>
+<br>
+これに対して, 統一訓練モデルの, 各case_numごとの評価がCVでどうなっているのかについては以下の通り:<br>
 ```
 # trained on & evaluated by case_num all
 
