@@ -387,6 +387,7 @@ Score: 0.8359
 ```
 <br>
 これに対して, 統一訓練モデルの, 各case_numごとの評価がCVでどうなっているのかについては以下の通り:<br>
+
 ```
 # trained on & evaluated by case_num all
 
