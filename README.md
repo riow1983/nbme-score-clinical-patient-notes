@@ -139,6 +139,7 @@ else:
 |(typing) 実践！！Python型入門(Type Hints)|[URL](https://qiita.com/papi_tokei/items/2a309d313bc6fc5661c3)|Done|typingの使い方|
 |(PyTorch) 小ネタ：Pytorch で Automatic Mixed Precision (AMP) の ON/OFF をするときの話|[URL](https://tawara.hatenablog.com/entry/2021/05/31/220936)|Done|`torch.cuda.amp`のON/OFF実装小ワザ|
 |(PyTorch) [GPUを簡単に高速化・省メモリ化] NVIDIAのapex.ampがPyTorchに統合されたようです|[URL](https://qiita.com/Sosuke115/items/40265e6aaf2e414e2fea)|Done|apexってNVIDIAのAMP機能のことだったのね|
+|(LINE) 【kaggle入門】処理が終わった時にLINE通知する方法|[URL](https://ikesala.com/kaggle_line/)|Done|requestsで簡単実装|
 <br>
 
 
@@ -429,6 +430,28 @@ Score: 0.7666
 
 ========== CV ==========
 Score: 0.7898
+
+
+
+# trained on & evaluated by case_num 3
+
+========== fold: 0 result ==========
+Score: 0.8578
+
+========== fold: 1 result ==========
+Score: 0.8687
+
+========== fold: 2 result ==========
+Score: 0.8532
+
+========== fold: 3 result ==========
+Score: 0.8711
+
+========== fold: 4 result ==========
+Score: 0.8558
+
+========== CV ==========
+Score: 0.8615
 ```
 <br>
 これに対して, 統一訓練モデルの, 各case_numごとの評価がCVでどうなっているのかについては以下の通り:<br>
