@@ -96,6 +96,29 @@ elif 'google.colab' in sys.modules:
 ```
 <br>
 
+```python
+# Push to LINE
+
+import requests
+
+def send_line_notification(message):
+    import json
+    f = open("../../line.json", "r")
+    json_data = json.load(f)
+    line_token = json_data["kagglePush"]
+    endpoint = 'https://notify-api.line.me/api/notify'
+    message = "\n{}".format(message)
+    payload = {'message': message}
+    headers = {'Authorization': 'Bearer {}'.format(line_token)}
+    requests.post(endpoint, data=payload, headers=headers)
+
+if CFG.wandb:
+    send_line_notification(f"Training of {CFG.wandbgroup} has been done. See {run.url}")
+else:
+    send_line_notification(f"Training of {CFG.wandbgroup} has been done.")
+```
+<br>
+
 
 #### Papers
 |name|url|status|comment|
@@ -384,6 +407,28 @@ Score: 0.8357
 
 ========== CV ==========
 Score: 0.8359
+
+
+
+# trained on & evaluated by case_num 2
+
+========== fold: 0 result ==========
+Score: 0.7946
+
+========== fold: 1 result ==========
+Score: 0.8249
+
+========== fold: 2 result ==========
+Score: 0.7756
+
+========== fold: 3 result ==========
+Score: 0.7892
+
+========== fold: 4 result ==========
+Score: 0.7666
+
+========== CV ==========
+Score: 0.7898
 ```
 <br>
 これに対して, 統一訓練モデルの, 各case_numごとの評価がCVでどうなっているのかについては以下の通り:<br>
