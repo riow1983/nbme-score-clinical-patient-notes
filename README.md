@@ -119,6 +119,29 @@ else:
 ```
 <br>
 
+```python
+# Seed everything
+def seed_everything(seed=42):
+    random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.backends.cudnn.deterministic = True
+    
+seed_everything(seed=42)
+```
+<br>
+
+```python
+>>> import sys
+>>> print(sys.argv)
+['demo.py', 'one', 'two', 'three']
+
+# reference: https://docs.python.org/ja/3.8/tutorial/stdlib.html
+```
+<br>
+
 
 #### Papers
 |name|url|status|comment|
@@ -140,6 +163,9 @@ else:
 |(PyTorch) 小ネタ：Pytorch で Automatic Mixed Precision (AMP) の ON/OFF をするときの話|[URL](https://tawara.hatenablog.com/entry/2021/05/31/220936)|Done|`torch.cuda.amp`のON/OFF実装小ワザ|
 |(PyTorch) [GPUを簡単に高速化・省メモリ化] NVIDIAのapex.ampがPyTorchに統合されたようです|[URL](https://qiita.com/Sosuke115/items/40265e6aaf2e414e2fea)|Done|apexってNVIDIAのAMP機能のことだったのね|
 |(LINE) 【kaggle入門】処理が終わった時にLINE通知する方法|[URL](https://ikesala.com/kaggle_line/)|Done|requestsで簡単実装|
+|(Bash) Bash For Loop Examples|[URL](https://www.cyberciti.biz/faq/bash-for-loop/)|Done|Bashによるfor loopの書き方|
+|(Kaggle) Kaggleコード遺産|[URL](https://qiita.com/kaggle_grandmaster-arai-san/items/d59b2fb7142ec7e270a5)|Keep|Kaggleに使えそうなレガシーコード群|
+|(W&B) 【入門】wandbの使い方（Google Colab+PyTorch）|[URL](https://dreamer-uma.com/wandb-pytorch-google-colab/)|Done|一見分かりやすいが, [公式のColab Notebook](https://colab.research.google.com/github/wandb/examples/blob/master/colabs/pytorch/Simple_PyTorch_Integration.ipynb)を見たほうが良い|
 <br>
 
 
@@ -178,6 +204,11 @@ else:
 |name|url|status|comment|
 |----|----|----|----|
 <br>
+
+#### Colab Notebook
+|name|url|status|comment|
+|----|----|----|----|
+|(W&B) Simple_PyTorch_Integration|[URL](https://colab.research.google.com/github/wandb/examples/blob/master/colabs/pytorch/Simple_PyTorch_Integration.ipynb)|Keep|PyTorchの訓練にW&Bを組み込む公式実装例|
 
 #### Kaggle (Notebooks)
 |name|url|status|comment|
