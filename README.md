@@ -398,113 +398,22 @@ Step 2) 擬似ラベルが付与されたpn_notesをtrainに縦結合し, 擬似
 #### 2022-02-25
 各case_numだけで訓練したモデルの当該case_numだけの評価はCVで以下の通り:<br> 
 ```
-# trained on & evaluated by case_num 0
-
-========== fold: 0 result ==========
-Score: 0.8617
-
-========== fold: 1 result ==========
-Score: 0.8534
-
-========== fold: 2 result ==========
-Score: 0.8459
-
-========== fold: 3 result ==========
-Score: 0.8488
-
-========== fold: 4 result ==========
-Score: 0.8396
-
-========== CV ==========
-Score: 0.8497
-
-
-
-# trained on & evaluated by case_num 1
-
-========== fold: 0 result ==========
-Score: 0.8109
-
-========== fold: 1 result ==========
-Score: 0.8715
-
-========== fold: 2 result ==========
-Score: 0.8281
-
-========== fold: 3 result ==========
-Score: 0.8265
-
-========== fold: 4 result ==========
-Score: 0.8357
-
-========== CV ==========
-Score: 0.8359
-
-
-
-# trained on & evaluated by case_num 2
-
-========== fold: 0 result ==========
-Score: 0.7946
-
-========== fold: 1 result ==========
-Score: 0.8249
-
-========== fold: 2 result ==========
-Score: 0.7756
-
-========== fold: 3 result ==========
-Score: 0.7892
-
-========== fold: 4 result ==========
-Score: 0.7666
-
-========== CV ==========
-Score: 0.7898
-
-
-
-# trained on & evaluated by case_num 3
-
-========== fold: 0 result ==========
-Score: 0.8578
-
-========== fold: 1 result ==========
-Score: 0.8687
-
-========== fold: 2 result ==========
-Score: 0.8532
-
-========== fold: 3 result ==========
-Score: 0.8711
-
-========== fold: 4 result ==========
-Score: 0.8558
-
-========== CV ==========
-Score: 0.8615
+Score of case_num 0: 0.8497251859036535
+Score of case_num 1: 0.8358820832321925
+Score of case_num 2: 0.7897973324094926
+Score of case_num 3: 0.8632173283033953
+Score of case_num 4: 0.8268399541297892
+Score of case_num 5: 0.7618812753214727
+Score of case_num 6: 0.8425865038359166
+Score of case_num 7: 0.7858024485438837
+Score of case_num 8: 0.8301636199295346
+Score of case_num 9: 0.8522291598203529
 ```
 <br>
 これに対して, 統一訓練モデルの, 各case_numごとの評価がCVでどうなっているのかについては以下の通り:<br>
 
 ```
 # trained on & evaluated by case_num all
-
-========== fold: 0 result ==========
-Score: 0.8638
-
-========== fold: 1 result ==========
-Score: 0.8604
-
-========== fold: 2 result ==========
-Score: 0.8611
-
-========== fold: 3 result ==========
-Score: 0.8542
-
-========== fold: 4 result ==========
-Score: 0.8613
-
 ========== CV ==========
 Score of case_num 0: 0.8677
 Score of case_num 1: 0.8708
@@ -517,7 +426,7 @@ Score of case_num 7: 0.8433
 Score of case_num 8: 0.8846
 Score of case_num 9: 0.8934
 ```
-これを見ると, case_num 0のスコアは0.8677となっており, case_num 0だけの評価でも統一訓練モデルの方が精度が高いようだ.
+これを見ると, 総じて統一訓練モデルの方が精度が高いようだ.
 <br>
 [git commit SHAとwandbの連動については自動で行われる](https://docs.wandb.ai/guides/track/launch#how-can-i-save-the-git-commit-associated-with-my-run)ことが分かった. wandb.run直前のgit SHAがwandb run pageに拾われるので, パラメータをfixさせたら実験を実行する前に必ずgit pushしておくこと.
 
