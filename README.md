@@ -166,6 +166,7 @@ seed_everything(seed=42)
 |(Bash) Bash For Loop Examples|[URL](https://www.cyberciti.biz/faq/bash-for-loop/)|Done|Bashによるfor loopの書き方|
 |(Kaggle) Kaggleコード遺産|[URL](https://qiita.com/kaggle_grandmaster-arai-san/items/d59b2fb7142ec7e270a5)|Keep|Kaggleに使えそうなレガシーコード群|
 |(W&B) 【入門】wandbの使い方（Google Colab+PyTorch）|[URL](https://dreamer-uma.com/wandb-pytorch-google-colab/)|Done|一見分かりやすいが, [公式のColab Notebook](https://colab.research.google.com/github/wandb/examples/blob/master/colabs/pytorch/Simple_PyTorch_Integration.ipynb)を見たほうが良い|
+|(W&B) Weights & Biases の使い方|[URL](https://note.com/npaka/n/ne1e5112a796a)|[URL](https://note.com/npaka/n/ne1e5112a796a)|Done|Dashboard, Reports, Sweeps, Artifactsがそれぞれ何をするものなのかについて日本語の解説が有難い|
 <br>
 
 
