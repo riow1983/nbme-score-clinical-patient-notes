@@ -142,6 +142,13 @@ seed_everything(seed=42)
 ```
 <br>
 
+```bash
+# JupyterのIOPub data rate exceeded エラー回避方法
+!jupyter notebook --generate-config -y
+!echo 'c.NotebookApp.iopub_data_rate_limit = 10000000' >> /root/.jupyter/jupyter_notebook_config.py
+```
+<br>
+
 
 #### Papers
 |name|url|status|comment|
@@ -167,6 +174,7 @@ seed_everything(seed=42)
 |(Kaggle) Kaggleコード遺産|[URL](https://qiita.com/kaggle_grandmaster-arai-san/items/d59b2fb7142ec7e270a5)|Keep|Kaggleに使えそうなレガシーコード群|
 |(W&B) 【入門】wandbの使い方（Google Colab+PyTorch）|[URL](https://dreamer-uma.com/wandb-pytorch-google-colab/)|Done|一見分かりやすいが, [公式のColab Notebook](https://colab.research.google.com/github/wandb/examples/blob/master/colabs/pytorch/Simple_PyTorch_Integration.ipynb)を見たほうが良い|
 |(W&B) Weights & Biases の使い方|[URL](https://note.com/npaka/n/ne1e5112a796a)|[URL](https://note.com/npaka/n/ne1e5112a796a)|Done|Dashboard, Reports, Sweeps, Artifactsがそれぞれ何をするものなのかについて日本語の解説が有難い|
+|(Jupyter) Jupyter Notebook で IOPub data rate exceeded エラー|[URL](https://yoshitaku-jp.hatenablog.com/entry/2018/12/15/164849)|Done|jupyter_notebook_config.pyを編集すれば対処可能|
 <br>
 
 
@@ -191,6 +199,9 @@ seed_everything(seed=42)
 |(pandas) How to apply a function to two columns of Pandas dataframe|[URL](https://stackoverflow.com/questions/13331698/how-to-apply-a-function-to-two-columns-of-pandas-dataframe)|Done|pandasで２列以上に同時に関数を適用させる方法|
 |(Python) What does "'\'\r" do in Python?|[URL](https://www.quora.com/What-does-r-do-in-Python)|Done|キャリッジ・リターンについて|
 |(Colab) Just got Colab Pro, how can I ensure that processes remain running after closing the notebook?|[URL](https://www.reddit.com/r/GoogleColab/comments/q4s7jh/just_got_colab_pro_how_can_i_ensure_that/)|Done|Colab Pro+でbackground executionが実行されていることを確認するには|
+|(Python) Get number of workers from process Pool in python multiprocessing module|[URL](https://stackoverflow.com/questions/20353956/get-number-of-workers-from-process-pool-in-python-multiprocessing-module)|Done|Google Colab Pro+のnum of workersは8だった|
+|(Bash) How can I display the contents of a text file on the command line?|[URL](https://unix.stackexchange.com/questions/86321/how-can-i-display-the-contents-of-a-text-file-on-the-command-line)|Done|`less filename`でJupyter上でもファイルの中身を全て表示できる|
+|(Bash) Bash: Write to File|[URL](https://linuxize.com/post/bash-write-to-file/)|Done|`echo 'this is a line' >> file.txt`で良い|
 <br>
 
 #### GitHub
