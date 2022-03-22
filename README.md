@@ -440,7 +440,20 @@ Score of case_num 9: 0.8934
 ```
 これを見ると, 総じて統一訓練モデルの方が精度が高いようだ.
 <br>
-[git commit SHAとwandbの連動については自動で行われる](https://docs.wandb.ai/guides/track/launch#how-can-i-save-the-git-commit-associated-with-my-run)ことが分かった. wandb.run直前のgit SHAがwandb run pageに拾われるので, パラメータをfixさせたら実験を実行する前に必ずgit pushしておくこと.
+[git commit SHAとwandbの連動については自動で行われる](https://docs.wandb.ai/guides/track/launch#how-can-i-save-the-git-commit-associated-with-my-run)ことが分かった. wandb.run直前のgit SHAがwandb run pageに拾われるので, パラメータをfixさせたら実験を実行する前に必ずgit pushしておくこと.<br>
+<br>
+<br>
+<br>
+
+#### 2022-03-21
+- (1) `./src/001t_token_classifier.py`にてcase_num-allで訓練した弱学習器を使い, 
+- (2)`./notebooks/nb002i-token-classifier.ipynb`でpatient_notesに擬似ラベルを付与し, 
+- (3)その擬似ラベル付きpatient_notesをtrainに縦結合させてcase_num-allで(1)とは無関係に訓練したモデルを使い (なお, 1 epoch 240分ほどかかったため, fold 1以降は, 2 epochsまでとした.), 
+- (4)kagglenb003i-token-classifier.ipynbで推論した結果をsubmitしたところPublic LB scoreが0.866だった.
+
+[擬似ラベルを使わない通常訓練ではPublic LB scoreは0.861](https://www.kaggle.com/code/yasufuminakama/nbme-deberta-base-baseline-inference/notebook)なので, 擬似ラベル訓練をすると+0.005改善するようだ. なお, CVは各fold平均して0.88-0.89と更に高精度. (対して通常訓練のCVは概ね0.85未満だった.)<br>
+<br>
+[現在公開されているノートブックでbest scoreは0.882](https://www.kaggle.com/code/theoviel/roberta-strikes-back/notebook)なので, これを擬似ラベル訓練に変更すれば0.887となり, 現時点で銀圏になる.
 
 
 #### 2022-05-03
