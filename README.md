@@ -453,8 +453,28 @@ Score of case_num 9: 0.8934
 
 [擬似ラベルを使わない通常訓練ではPublic LB scoreは0.861](https://www.kaggle.com/code/yasufuminakama/nbme-deberta-base-baseline-inference/notebook)なので, 擬似ラベル訓練をすると+0.005改善するようだ. なお, CVは各fold平均して0.88-0.89と更に高精度. (対して通常訓練のCVは概ね0.85未満だった.)<br>
 <br>
-[現在公開されているノートブックでbest scoreは0.882](https://www.kaggle.com/code/theoviel/roberta-strikes-back/notebook)なので, これを擬似ラベル訓練に変更すれば0.887となり, 現時点で銀圏になる.
+[現在公開されているノートブックでbest scoreは0.882](https://www.kaggle.com/code/theoviel/roberta-strikes-back/notebook)なので, これを擬似ラベル訓練に変更すれば0.887となり, 現時点で銀圏になる.<br>
+<br>
+<br>
+<br>
 
+#### 2022-03-29
+DeBERTa Large V3を使うベストスコア公開ノートブック[Deberta-v3-large baseline - DeepShare](https://www.kaggle.com/code/guanghan/deberta-v3-large-baseline-deepshare)(LB: 0.883)を真似て./notebooks/001t-token-classifier.ipynbを改良, PL訓練では無い通常訓練でLB 0.882達成. これをベースにPL訓練版をsubmitしてみたい.<br>
+<br>
+<br>
+<br>
+
+#### 2022-03-30
+PL学習手順整理:
+- [1] (Local) ./notebooks/001t-token-classifier.ipynbにてcase-num-allで通常訓練 (モデル名: model.pth)
+- [2] (Local) ./notebooks/002i-token-classifier.ipynbにてmodel.pthを使ったinference, 擬似ラベルデータ作成
+- [3] (Local) ./notebooks/001t-train-classifier.ipynbにてcase-num-allでPL訓練 (モデル名: model_pl.pth)
+- [4] (Local) ./notebooks/001t-train-classifier/をKaggle Datasetにアップロード
+- [5] (Kaggle Platform) kagglenb003i-token-classifier.ipynbにてmodel_pl.pthを使ったinference, submission.csv作成, submit
+
+<br>
+<br>
+<br>
 
 #### 2022-05-03
 結果は/だった. <br>
