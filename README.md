@@ -483,6 +483,19 @@ PL学習手順整理:
 <br>
 <br>
 
+#### 2022-04-10
+永らくPLに関する情報はコンペ内で大々的に共有されていなかったが, ここに来てディスカッションなどでPLの利点・難点について議論されるようになってきた模様.<br>
+こちらのディスカッション [Pseudo labels make cv/lb uncorrelated?](https://www.kaggle.com/competitions/nbme-score-clinical-patient-notes/discussion/315321) では, PLを普通にやるとCVがLBに比して優秀(>0.9)なのはPLによるリークが起きているに違いないという論点が共有されており, 過去コンペでそのようなリークを防ぐため, PLデータをfoldごとに作っておき, foldごとにconcatenateして訓練する方法が提案されていた. [1st place solution with code](https://www.kaggle.com/c/google-quest-challenge/discussion/129840)<br>
+> We could expect a lot of very similar questions/answers in SO&SE data, so we clearly couldn’t rely on that sort of pseudolabels. In order to fix the problem, **we generated 5 different sets of pseudolabels where for each train/val split we used only those models that were trained using only the current train set.** This gave much less accurate pseudolabels, but eliminated any possible source of target leakage.
+
+従って私もこの方法に従って実装を変更することにした.<br>
+なお, 図にすると以下のような流れになると思われ:<br>
+![pl_fold](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/pl_fold.png)
+<br>
+<br>
+<br>
+
+
 
 #### 2022-05-03
 結果は/だった. <br>
