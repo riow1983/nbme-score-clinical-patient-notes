@@ -149,6 +149,13 @@ seed_everything(seed=42)
 ```
 <br>
 
+```python
+# PyTorchのバージョンを1.10.1に下げる方法 (Google Colabなのでpipでやる)
+os.system('pip uninstall -y torch torchvision torchaudio')
+os.system('pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/torch_stable.html')
+```
+<br>
+
 
 #### Papers
 |name|url|status|comment|
@@ -175,6 +182,8 @@ seed_everything(seed=42)
 |(W&B) 【入門】wandbの使い方（Google Colab+PyTorch）|[URL](https://dreamer-uma.com/wandb-pytorch-google-colab/)|Done|一見分かりやすいが, [公式のColab Notebook](https://colab.research.google.com/github/wandb/examples/blob/master/colabs/pytorch/Simple_PyTorch_Integration.ipynb)を見たほうが良い|
 |(W&B) Weights & Biases の使い方|[URL](https://note.com/npaka/n/ne1e5112a796a)|[URL](https://note.com/npaka/n/ne1e5112a796a)|Done|Dashboard, Reports, Sweeps, Artifactsがそれぞれ何をするものなのかについて日本語の解説が有難い|
 |(Jupyter) Jupyter Notebook で IOPub data rate exceeded エラー|[URL](https://yoshitaku-jp.hatenablog.com/entry/2018/12/15/164849)|Done|jupyter_notebook_config.pyを編集すれば対処可能|
+|(Prodigy) Supervised learning is great — it's data collection that's broken|[URL](https://explosion.ai/blog/supervised-learning-data-collection)|Keep|Prodidyを検索している途上で出会ったInesの記事. 主旨がよく分からないが捨てられず.|
+|A Gentle Introduction to Self-Training and Semi-Supervised Learning|[URL](https://towardsdatascience.com/a-gentle-introduction-to-self-training-and-semi-supervised-learning-ceee73178b38)|Keep|PLの手順の基礎が確認できる|
 <br>
 
 
@@ -189,6 +198,9 @@ seed_everything(seed=42)
 |(:hugs:) Auto Classes|[URL](https://huggingface.co/docs/transformers/model_doc/auto#auto-classes)|Done|AutoConfig, AutoModel, AutoTokenizerがあれば他に何もいらない|
 |(W&B) Launch Experiments with wandb.init|[URL](https://docs.wandb.ai/guides/track/launch)|Keep|W&Bを使った実験管理についての公式ドキュメント|
 |(W&B) wandb.init|[URL](https://docs.wandb.ai/ref/python/init)|Done|wandb.initに渡せる引数一覧|
+|Trobe|[URL](https://pythonrepo.com/repo/som-shahlab-trove-python-deep-learning)|Keep|Trove is a research framework for building weakly supervised (bio)medical NER classifiers without hand-labeled training data.|<br>GitHubレポジトリにチュートリアルが充実しており使いやすい印象.|
+|(PyTorch) INSTALLING PREVIOUS VERSIONS OF PYTORCH|[URL](https://pytorch.org/get-started/previous-versions/)|Done|Google Colabの場合はpip管理|
+|(pandas) pandas.testing.assert_frame_equal|[URL](https://pandas.pydata.org/docs/reference/api/pandas.testing.assert_frame_equal.html#:~:text=Check%20that%20left%20and%20right,for%20use%20in%20unit%20tests.)|Done|dfが同等かテストするメソッド|
 <br>
 
 #### BBC (StackOverflow / StackExchange / Quora / Reddit / Others)
@@ -202,6 +214,7 @@ seed_everything(seed=42)
 |(Python) Get number of workers from process Pool in python multiprocessing module|[URL](https://stackoverflow.com/questions/20353956/get-number-of-workers-from-process-pool-in-python-multiprocessing-module)|Done|Google Colab Pro+のnum of workersは8だった|
 |(Bash) How can I display the contents of a text file on the command line?|[URL](https://unix.stackexchange.com/questions/86321/how-can-i-display-the-contents-of-a-text-file-on-the-command-line)|Done|`less filename`でJupyter上でもファイルの中身を全て表示できる|
 |(Bash) Bash: Write to File|[URL](https://linuxize.com/post/bash-write-to-file/)|Done|`echo 'this is a line' >> file.txt`で良い|
+|(PyTorch) Pytorch 0.2.1をバージョンダウンする方法|[URL](https://ja.stackoverflow.com/questions/49261/pytorch-0-2-1%E3%82%92%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%83%80%E3%82%A6%E3%83%B3%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95)|Done|URLからインストールする際のリンク先等は[公式ドキュメントの旧バージョンページ](https://pytorch.org/get-started/previous-versions/)に従うこと|
 <br>
 
 #### GitHub
@@ -209,6 +222,8 @@ seed_everything(seed=42)
 |----|----|----|----|
 |(skweak) skweak: Weak supervision for NLP|[URL](https://github.com/NorskRegnesentral/skweak)|Keep|snorkelと同じくLF(ラベル関数)を使った弱学習フレームワークを提案するライブラリ.<br> spaCyと統合されているが使えるのか不明.|
 |(:hugs:) huggingface/transformers|[URL](https://github.com/huggingface/transformers/tree/master/examples/pytorch)|Keep|タスクごとのデータ構造を知りたくなったらここ|
+|SentencePiece|[URL](https://github.com/google/sentencepiece)|Keep|"SentencePiece is an unsupervised text tokenizer"の一言が全て.|
+|(:hugs:) debert TypeError: \_softmax_backward_data(): argument 'input_dtype' (position 4) must be torch.dtype, not Tensor #16587|[URL](https://github.com/huggingface/transformers/issues/16587)|Done|Google ColabのPyTorchのバージョンが1.10から1.11に上がったことに起因する:hugs:transformersのエラー. <br>[nbroad1881によるPRにより解消された](https://github.com/huggingface/transformers/pull/16806)ものの, <br>:hugs:transformersをinputフォルダに入れて利用しているnb001tにとっては[PyTorchのバージョンを1.10に下げる](https://ja.stackoverflow.com/questions/49261/pytorch-0-2-1%E3%82%92%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%83%80%E3%82%A6%E3%83%B3%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95)ほか方法がなかった.|
 
 <br>
 
