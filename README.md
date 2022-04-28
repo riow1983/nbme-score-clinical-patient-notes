@@ -512,10 +512,10 @@ PL学習手順整理:
 
 #### 2022-04-27
 ようやくリーク防止型のPL訓練が5 fold分完了した. なお, 4月26日に最後の5fold目を訓練する際, debertに起因するエラー `TypeError: \_softmax_backward_data(): argument 'input_dtype' (position 4) must be torch.dtype, not Tensor` に遭遇. 4fold目まではこんなことはなかったのに変だと思っていたら, どうやらGoogle ColabのPyTorchのバージョンが1.10から1.11に上がったことで, :hugs:transformers側のバージョンチェッカーが反応していたらしい. その不具合は[こちら](https://github.com/huggingface/transformers/issues/16587)で報告され, PRがなされfixした. しかし我がnb001tは訳あって:hugs:transformersをinputフォルダからインストールしているので, fixは反映されない. PyTorchのバージョンを1.10に下げることでエラー解消でき無事5fold目の訓練も完了した.<br>
+submitした結果, LB=0.887となり, リーク防止前の0.885と比べて0.002改善した.
 <br>
 <br>
 <br>
-
 
 
 #### 2022-05-03
