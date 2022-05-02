@@ -23,6 +23,8 @@ pytorch-xla-env-setup.py
 !/src/001t-token-classifier/.gitkeep
 /nb001t-token-classifier_v5/
 /wandb/
+/notebooks/nb001t-token-classifier-xsmall/*
+!/notebooks/nb001t-token-classifier-xsmall/.gitkeep
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
