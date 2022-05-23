@@ -535,7 +535,7 @@ submitした結果, LB=0.887となり, リーク防止前の0.885と比べて0.0
 textにpn_history (受験者が擬似患者に問診し記述したテキスト), feature_text に当該擬似患者の真の特性 (病歴情報) が入る. 一方, labelはspan ((start_position, end_position)) であり, text[span]がfeature_textに意味的に合致すれば正解となる.<br>
 Datasetを介して, textとfeature_textをinputs で受け, labelはそのままlabelで受け, modelに入力する. modelのoutputはtokenごとのlast_hidden_stateを元にした確率値のような値である. この値をlabelと同一の構造((start_position, end_position))に変換する処理はモデルの外で行い, lossは変換後の予測labelと真のlabelをBCEで計算し, 誤差逆伝播でtokenごとのlast_hidden_stateが最適化されるように仕向けている.<br>
 <br>
-**modelのoutputから予測label獲得までの処理について*<br>
+**modelのoutputから予測label獲得までの処理について**<br>
 ```
 # ====================================================
 # Model
