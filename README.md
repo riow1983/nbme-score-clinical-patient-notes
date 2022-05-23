@@ -525,7 +525,7 @@ submitした結果, LB=0.887となり, リーク防止前の0.885と比べて0.0
 
 #### 2022-05-03
 結果は277/1471だった. <br>
-![private lb image]((https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/result.png))
+![private lb image](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/result.png)
 
 {所感}
 <br>
