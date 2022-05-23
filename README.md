@@ -528,11 +528,7 @@ submitした結果, LB=0.887となり, リーク防止前の0.885と比べて0.0
 ![private lb image](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/result.png)
 <br>
 <br>
-My submissions:<br>
-![my submissions](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/mysubmissions.png)
-<br>
-<br>
-**どのように取り組み, 何を反省しているか**
+**どのように取り組み, 何を反省しているか**<br>
 今回のコンペはコンペ開始直後から参加することができ, 与えられた期間は３ヶ月だった. そのため期間を４フェーズに分け, 最初期フェーズではEDAをしつつ独自解法の考案, 次の初期フェーズでは公開notebookのうち気に入ったものを2,3精読する, 中期フェーズでは独自解放の実装, 後期フェーズで実験, と計画的に取り組めたが, 最後の実験フェーズで計算リソースの限界からか後述する気力減退に陥ってしまった. また考案した独自解法は1個では不十分で, 10種類くらい着想していく必要があり, 全て実装して結果を確認するだけのスピードも求められると感じた.<br>
 <br>
 **`tokenizer(text, feature_text)`について**<br>
@@ -568,7 +564,10 @@ last_hidden_states: (n_rows, seq_len, hidden_size)<br>
 ![get functions](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/get_functions.png)
 <br>
 <br>
-**リーク防止PL学習について**
+**リーク防止PL学習について**<br>
+My submissions:<br>
+![my submissions](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/mysubmissions.png)
+<br>
 自分で発想し実装したリーク防止PLの結果も, Private LBが通常のPLより悪くなっており, Public LBにオーバーフィットしていただけのようだったのは残念. <br>
 また大幅なshake down(138位下落)となったのも痛かった.<br>
 計算リソースはGoogle Colab Pro+を使用したものの, PL学習では1 foldにかかる時間が12時間と長く, 試行錯誤を繰り返す気力が萎えてしまった. これ以上の課金をしないという前提での解決策としてはPL学習に使う未ラベルデータをランダムサンプリングして減らすか, Deep Speedなどのメモリ効率化系ライブラリの実装に取り組むか, 辺りだと思う. 
