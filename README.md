@@ -555,16 +555,16 @@ class CustomModel(nn.Module):
         return output
 ```
 last_hidden_states: (n_rows, seq_len, hidden_size)<br>
-`self.fc`はhidden_size -> 1 とする線形変換なので, hidden_sizeは1となる.<br>
-次に, 0-1間に収めて確率のように扱えるよう, `output.sigmoid()`をvalid_fn (or inference_fn) の中で行い,<br> 
-次に, valid_fn (or inference_fn) の外側 (= train loop内) で `output.reshape((n_rows, seq_len))`とする.<br>
+`self.fc`はhidden_size -> 1 とする線形写像なので, hidden_sizeは1となる.<br>
+次に, 0-1間に収めて確率のように扱えるよう, `output.sigmoid()`をvalid_fn (or inference_fn)の中で行い,<br> 
+次に, valid_fn (or inference_fn)の外側(= train loop内)で `output.reshape((n_rows, seq_len))`とする.<br>
 ![reshape](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/reshape.png)
 <br>
-これにより, 1インスタンス (1 text) ごとにtokenごとの"feature_text該当部分たり得る確率"が得られ, これをget_char_probs -> get_results の順に処理していくことで, 予測spanに変換している.<br>
+これにより, 1インスタンス(1 text)ごとにtokenごとの"feature_text該当部分たり得る確率"が得られ, これをget_char_probs -> get_resultsの順に処理していくことで, 予測spanに変換している. lossはこの予測spanと真のspanの比較をすることで計算される.<br>
 ![get functions](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/get_functions.png)
 <br>
 <br>
-**リーク防止PL学習について**<br>
+**リーク防止PL学習およびその他不首尾について**<br>
 My submissions:<br>
 ![my submissions](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/mysubmissions.png)
 <br>
