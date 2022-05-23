@@ -568,7 +568,7 @@ last_hidden_states: (n_rows, seq_len, hidden_size)<br>
 My submissions:<br>
 ![my submissions](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/mysubmissions.png)
 <br>
-自分で発想し実装したリーク防止PLの結果も, Private LBが通常のPLより悪くなっており, Public LBにオーバーフィットしていただけのようだったのは残念. <br>
+[自分で発想し実装したリーク防止PL学習](https://github.com/riow1983/nbme-score-clinical-patient-notes#2022-04-10)の結果も, Private LBが通常のPLより悪くなっており, Public LBにオーバーフィットしていただけのようだったのは残念. <br>
 また大幅なshake down(138位下落)となったのも痛かった.<br>
 計算リソースはGoogle Colab Pro+を使用したものの, PL学習では1 foldにかかる時間が12時間と長く, 試行錯誤を繰り返す気力が萎えてしまった. これ以上の課金をしないという前提での解決策としてはPL学習に使う未ラベルデータをランダムサンプリングして減らすか, Deep Speedなどのメモリ効率化系ライブラリの実装に取り組むか, 辺りだと思う. 
 <br>
