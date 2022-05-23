@@ -184,6 +184,9 @@ os.system('pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio=
 |(Jupyter) Jupyter Notebook で IOPub data rate exceeded エラー|[URL](https://yoshitaku-jp.hatenablog.com/entry/2018/12/15/164849)|Done|jupyter_notebook_config.pyを編集すれば対処可能|
 |(Prodigy) Supervised learning is great — it's data collection that's broken|[URL](https://explosion.ai/blog/supervised-learning-data-collection)|Keep|Prodidyを検索している途上で出会ったInesの記事. 主旨がよく分からないが捨てられず.|
 |A Gentle Introduction to Self-Training and Semi-Supervised Learning|[URL](https://towardsdatascience.com/a-gentle-introduction-to-self-training-and-semi-supervised-learning-ceee73178b38)|Keep|PLの手順の基礎が確認できる|
+|(PyTorch) pytorch 0.4の変更点|[URL](https://qiita.com/vintersnow/items/91545c27e2003f62ebc4)|Keep|2018年4月の大改訂. <br>特に`TensorとVariableの統合`は備忘録として|
+|【ミニバッチ学習と学習率】低バッチサイズから始めよ|[URL](https://dajiro.com/entry/2020/04/15/221414#:~:text=%E3%81%9D%E3%81%AE%E3%81%9F%E3%82%81%E3%83%90%E3%83%83%E3%83%81%E3%82%B5%E3%82%A4%E3%82%BA%E3%81%AE%E4%B8%8A%E9%99%90,%E8%80%83%E6%85%AE%E3%81%99%E3%81%B9%E3%81%8D%E3%81%A7%E3%81%82%E3%82%8B%E3%80%82)|Keep|特に根拠が書いてある訳ではないが参考まで|
+|(Python) クラス継承でobjectクラスを継承する理由|[URL](https://teratail.com/questions/262231)|Keep|継承クラスが無い場合はobjectと書くか, 何も書かない.|
 <br>
 
 
@@ -224,7 +227,7 @@ os.system('pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio=
 |(:hugs:) huggingface/transformers|[URL](https://github.com/huggingface/transformers/tree/master/examples/pytorch)|Keep|タスクごとのデータ構造を知りたくなったらここ|
 |SentencePiece|[URL](https://github.com/google/sentencepiece)|Keep|"SentencePiece is an unsupervised text tokenizer"の一言が全て.|
 |(:hugs:) debert TypeError: \_softmax_backward_data(): argument 'input_dtype' (position 4) must be torch.dtype, not Tensor #16587|[URL](https://github.com/huggingface/transformers/issues/16587)|Done|Google ColabのPyTorchのバージョンが1.10から1.11に上がったことに起因する:hugs:transformersのエラー. <br>[nbroad1881によるPRにより解消された](https://github.com/huggingface/transformers/pull/16806)ものの, <br>:hugs:transformersをinputフォルダに入れて利用しているnb001tにとっては[PyTorchのバージョンを1.10に下げる](https://ja.stackoverflow.com/questions/49261/pytorch-0-2-1%E3%82%92%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%83%80%E3%82%A6%E3%83%B3%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95)ほか方法がなかった.|
-
+|Feedback_1st|[URL](https://github.com/antmachineintelligence/Feedback_1st)|Keep|feedback prize コンペの1位解法 github repo<br>antmachineintelligenceは杭州にあるAlibaba系Ant groupのAIチームと思われ.<br>multi-task GDBの実装およびペーパーを出している点にも注目したい.|
 <br>
 
 #### Hugging Face Platform
@@ -245,6 +248,7 @@ os.system('pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio=
 |NBME / Deberta-base baseline [inference]|[URL](https://www.kaggle.com/code/yasufuminakama/nbme-deberta-base-baseline-inference/notebook)|Keep|NBME / Deberta-base baseline [train]の推論版|
 |NBME / pip wheels|[URL](https://www.kaggle.com/yasufuminakama/nbme-pip-wheels)|Done|:hugs:transformersとtokenizersの特定バージョンのwhlファイル|
 |YoloV5 Pseudo Labeling|[URL](https://www.kaggle.com/nvnnghia/yolov5-pseudo-labeling/notebook)|Done|PL実装の参考例の一つとして|
+|feedback-nn-train|[URL](https://www.kaggle.com/code/wht1996/feedback-nn-train/notebook)|Keep|feedback prize コンペの1位解法notebookで, AWPの実装の参考例<br>その他coding全般が美しく参考になる|
 <br>
 
 #### Kaggle (Datasets)
@@ -255,6 +259,7 @@ os.system('pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio=
 #### Kaggle (Discussion)
 |name|url|status|comment|
 |----|----|----|----|
+|1st solution with code(cv:0.748 lb:0.742)|[URL](https://www.kaggle.com/competitions/feedback-prize-2021/discussion/313177)|Keep|feedback prize コンペの1位解法<br>NBME コンペにも多大な影響を与えていた|
 <br>
 
 
@@ -519,8 +524,8 @@ submitした結果, LB=0.887となり, リーク防止前の0.885と比べて0.0
 
 
 #### 2022-05-03
-結果は/だった. <br>
-![input file image]()
+結果は277/1471だった. <br>
+![private lb image]((https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/result.png))
 
 {所感}
 <br>
