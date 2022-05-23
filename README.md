@@ -526,8 +526,52 @@ submitした結果, LB=0.887となり, リーク防止前の0.885と比べて0.0
 #### 2022-05-03
 結果は277/1471だった. <br>
 ![private lb image](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/result.png)
+<br>
+<br>
+My submissions:<br>
+![my submissions](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/mysubmissions.png)
+<br>
+<br>
+**どのように取り組み, 何を反省しているか**
+今回のコンペはコンペ開始直後から参加することができ, 与えられた期間は３ヶ月だった. そのため期間を４フェーズに分け, 最初期フェーズではEDAをしつつ独自解法の考案, 次の初期フェーズでは公開notebookのうち気に入ったものを2,3精読する, 中期フェーズでは独自解放の実装, 後期フェーズで実験, と計画的に取り組めたが, 最後の実験フェーズで計算リソースの限界からか後述する気力減退に陥ってしまった. また考案した独自解法は1個では不十分で, 10種類くらい着想していく必要があり, 全て実装して結果を確認するだけのスピードも求められると感じた.<br>
+<br>
+**`tokenizer(text, feature_text)`について**<br>
+textにpn_history (受験者が擬似患者に問診し記述したテキスト), feature_text に当該擬似患者の真の特性 (病歴情報) が入る. 一方, labelはspan ((start_position, end_position)) であり, text[span]がfeature_textに意味的に合致すれば正解となる.<br>
+Datasetを介して, textとfeature_textをinputs で受け, labelはそのままlabelで受け, modelに入力する. modelのoutputはtokenごとのlast_hidden_stateを元にした確率値のような値である. この値をlabelと同一の構造((start_position, end_position))に変換する処理はモデルの外で行い, lossは変換後の予測labelと真のlabelをBCEで計算し, 誤差逆伝播でtokenごとのlast_hidden_stateが最適化されるように仕向けている.<br>
+<br>
+**modelのoutputから予測label獲得までの処理について*<br>
+```
+# ====================================================
+# Model
+# ====================================================
+class CustomModel(nn.Module):
 
-{所感}
+    ... (省略) ...
+
+    def feature(self, inputs):
+        outputs = self.model(**inputs)
+        last_hidden_states = outputs[0]
+        return last_hidden_states
+
+    def forward(self, inputs):
+        feature = self.feature(inputs)
+        output = self.fc(self.fc_dropout(feature))
+        return output
+```
+last_hidden_states: (n_rows, seq_len, hidden_size)<br>
+`self.fc`はhidden_size -> 1 とする線形変換なので, hidden_sizeは1となる.<br>
+次に, 0-1間に収めて確率のように扱えるよう, `output.sigmoid()`をvalid_fn (or inference_fn) の中で行い,<br> 
+次に, valid_fn (or inference_fn) の外側 (= train loop内) で `output.reshape((n_rows, seq_len))`とする.<br>
+![reshape](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/reshape.png)
+<br>
+これにより, 1インスタンス (1 text) ごとにtokenごとの"feature_text該当部分たり得る確率"が得られ, これをget_char_probs -> get_results の順に処理していくことで, 予測spanに変換している.<br>
+![get functions](https://github.com/riow1983/nbme-score-clinical-patient-notes/blob/main/png/get_functions.png)
+<br>
+<br>
+**リーク防止PL学習について**
+自分で発想し実装したリーク防止PLの結果も, Private LBが通常のPLより悪くなっており, Public LBにオーバーフィットしていただけのようだったのは残念. <br>
+また大幅なshake down(138位下落)となったのも痛かった.<br>
+計算リソースはGoogle Colab Pro+を使用したものの, PL学習では1 foldにかかる時間が12時間と長く, 試行錯誤を繰り返す気力が萎えてしまった. これ以上の課金をしないという前提での解決策としてはPL学習に使う未ラベルデータをランダムサンプリングして減らすか, Deep Speedなどのメモリ効率化系ライブラリの実装に取り組むか, 辺りだと思う. 
 <br>
 <br>
 <br>
