@@ -76,6 +76,22 @@ elif 'google.colab' in sys.modules:
 <br>
 
 ```python
+# output dir for Kaggle or other
+from pathlib import Path
+KAGGLE_ENV = True if 'KAGGLE_URL_BASE' in set(os.environ.keys()) else False
+INPUT_DIR = Path('../input/')
+
+if KAGGLE_ENV:
+    OUTPUT_DIR = Path('')
+else:
+    !mkdir nb001
+    OUTPUT_DIR = Path('./nb001/')
+
+# hoge_path = OUTPUT_DIR / 'hoge.csv'
+```
+<br>
+
+```python
 # pandas
 
 >>> df = pd.DataFrame({"A":["a1", "a2", "a3"], "B":["b1", "b2", "b3"]})
@@ -156,6 +172,35 @@ os.system('pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio=
 ```
 <br>
 
+```python
+# argparse example (reference: https://www.kaggle.com/code/currypurin/nbme-mlm/notebook)
+
+%%writefile mlm.py
+
+import argparse
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model_name", type=str, default="", required=False)
+    parser.add_argument("--model_path", type=str, default="../input/deberta-v3-large/deberta-v3-large/", required=False)
+    parser.add_argument("--seed", type=int, default=0, required=False)
+    parser.add_argument('--debug', action='store_true', required=False)
+    parser.add_argument('--exp_num', type=str, required=True)
+    parser.add_argument("--param_freeze", action='store_true', required=False)
+    parser.add_argument("--num_train_epochs", type=int, default=5, required=False)
+    parser.add_argument("--batch_size", type=int, default=8, required=False)
+    parser.add_argument("--lr", type=float, default=2e-5, required=False)
+    parser.add_argument("--gradient_accumulation_steps", type=int, default=1, required=False)
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    args = parse_args()
+
+# !python mlm.py --debug --exp_num 0
+```
+<br>
+
 
 #### Papers
 |name|url|status|comment|
@@ -187,6 +232,7 @@ os.system('pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio=
 |(PyTorch) pytorch 0.4の変更点|[URL](https://qiita.com/vintersnow/items/91545c27e2003f62ebc4)|Keep|2018年4月の大改訂. <br>特に`TensorとVariableの統合`は備忘録として|
 |【ミニバッチ学習と学習率】低バッチサイズから始めよ|[URL](https://dajiro.com/entry/2020/04/15/221414#:~:text=%E3%81%9D%E3%81%AE%E3%81%9F%E3%82%81%E3%83%90%E3%83%83%E3%83%81%E3%82%B5%E3%82%A4%E3%82%BA%E3%81%AE%E4%B8%8A%E9%99%90,%E8%80%83%E6%85%AE%E3%81%99%E3%81%B9%E3%81%8D%E3%81%A7%E3%81%82%E3%82%8B%E3%80%82)|Keep|特に根拠が書いてある訳ではないが参考まで|
 |(Python) クラス継承でobjectクラスを継承する理由|[URL](https://teratail.com/questions/262231)|Keep|継承クラスが無い場合はobjectと書くか, 何も書かない.|
+|(PyTorch) torch.sigmoid|[URL](https://runebook.dev/en/docs/pytorch/generated/torch.sigmoid)|Done|Returns a new tensor with the sigmoid of the elements of input.|
 <br>
 
 
@@ -249,6 +295,8 @@ os.system('pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio=
 |NBME / pip wheels|[URL](https://www.kaggle.com/yasufuminakama/nbme-pip-wheels)|Done|:hugs:transformersとtokenizersの特定バージョンのwhlファイル|
 |YoloV5 Pseudo Labeling|[URL](https://www.kaggle.com/nvnnghia/yolov5-pseudo-labeling/notebook)|Done|PL実装の参考例の一つとして|
 |feedback-nn-train|[URL](https://www.kaggle.com/code/wht1996/feedback-nn-train/notebook)|Keep|feedback prize コンペの1位解法notebookで, AWPの実装の参考例<br>その他coding全般が美しく参考になる|
+|(MLM) [Coleridge] BERT - Masked Dataset Modeling|[URL](https://www.kaggle.com/code/tungmphung/coleridge-bert-masked-dataset-modeling/notebook)|Done|1st teamが参考にしたColeridgeコンペに出現したMLM訓練の実装|
+|(MLM) NBME MLM|[URL](https://www.kaggle.com/code/currypurin/nbme-mlm/notebook)|Done|1st teamのMLM訓練の実装<br>:hugs: Trainerで完結している|
 <br>
 
 #### Kaggle (Datasets)
@@ -534,6 +582,8 @@ submitした結果, LB=0.887となり, リーク防止前の0.885と比べて0.0
 **`tokenizer(text, feature_text)`について**<br>
 textにpn_history (受験者が擬似患者に問診し記述したテキスト), feature_text に当該擬似患者の真の特性 (病歴情報) が入る. 一方, labelはspan ((start_position, end_position)) であり, text[span]がfeature_textに意味的に合致すれば正解となる.<br>
 Datasetを介して, textとfeature_textをinputs で受け, labelはそのままlabelで受け, modelに入力する. modelのoutputはtokenごとのlast_hidden_stateを元にした確率値のような値である. この値をlabelと同一の構造((start_position, end_position))に変換する処理はモデルの外で行い, lossは変換後の予測labelと真のlabelをBCEで計算し, 誤差逆伝播でtokenごとのlast_hidden_stateが最適化されるように仕向けている. [QAタスクとして見る](https://github.com/riow1983/nbme-score-clinical-patient-notes#2022-02-22)というのはナンセンスだった.<br>
+(参照: https://huggingface.co/docs/transformers/main_classes/tokenizer#transformers.PreTrainedTokenizer.__call__) tokenizerはデフォルトでtext(第1文)とtext_pair(第2文)の2つのtextを入力できる.
+<br>
 <br>
 **modelのoutputから予測label獲得までの処理について**<br>
 ```
@@ -555,6 +605,7 @@ class CustomModel(nn.Module):
         return output
 ```
 last_hidden_states: (n_rows, seq_len, hidden_size)<br>
+(参照: https://huggingface.co/docs/transformers/main_classes/output#transformers.modeling_outputs.BaseModelOutput)<br>
 `self.fc`はhidden_size -> 1 とする線形写像なので, hidden_sizeは1となる.<br>
 次に, 0-1間に収めて確率のように扱えるよう, `output.sigmoid()`をvalid_fn (or inference_fn)の中で行い,<br> 
 次に, valid_fn (or inference_fn)の外側(= train loop内)で `output.reshape((n_rows, seq_len))`とする.<br>
