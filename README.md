@@ -207,6 +207,7 @@ if __name__ == "__main__":
 |----|----|----|----|
 |Learning to select pseudo labels: a semi-supervised method for named entity recognition|[URL](https://journal.hep.com.cn/ckcest/fitee/EN/10.1631/FITEE.1800743)|アブストのみ読了|PLによるNER訓練の論文らしいがPDFが落とせない|
 |DeBERTa: Decoding-enhanced BERT with Disentangled Attention|[URL](https://arxiv.org/abs/2006.03654)|Keep|-|
+|Don’t Stop Pretraining: Adapt Language Models to Domains and Tasks|[URL](https://arxiv.org/pdf/2004.10964.pdf)|Reading|task-specific dataでもMLM訓練をすると良いらしい|
 
 <br>
 
@@ -233,6 +234,8 @@ if __name__ == "__main__":
 |【ミニバッチ学習と学習率】低バッチサイズから始めよ|[URL](https://dajiro.com/entry/2020/04/15/221414#:~:text=%E3%81%9D%E3%81%AE%E3%81%9F%E3%82%81%E3%83%90%E3%83%83%E3%83%81%E3%82%B5%E3%82%A4%E3%82%BA%E3%81%AE%E4%B8%8A%E9%99%90,%E8%80%83%E6%85%AE%E3%81%99%E3%81%B9%E3%81%8D%E3%81%A7%E3%81%82%E3%82%8B%E3%80%82)|Keep|特に根拠が書いてある訳ではないが参考まで|
 |(Python) クラス継承でobjectクラスを継承する理由|[URL](https://teratail.com/questions/262231)|Keep|継承クラスが無い場合はobjectと書くか, 何も書かない.|
 |(PyTorch) torch.sigmoid|[URL](https://runebook.dev/en/docs/pytorch/generated/torch.sigmoid)|Done|Returns a new tensor with the sigmoid of the elements of input.|
+|(数学) ヤコビアンの定義・意味・例題（２重積分の極座標変換・変数変換）【微積分】|[URL](https://k-san.link/jacobian-def/)|Done|今更ながらヤコビ行列とヤコビアン（ヤコビ行列式）の意味について<br>図解もあり非常に分かりやすい解説|
+|(REINFORCE) ゼロから始める深層強化学習（NLP2018講演資料）/ Introduction of Deep Reinforcement Learning|[URL](https://www.slideshare.net/pfi/nlp2018-introduction-of-deep-reinforcement-learning)|Keep|[Meta PLの論文](https://arxiv.org/pdf/2003.10580.pdf)にREINFORCE Algorithmが出てきたので, 見てみたら見事に撃沈|
 <br>
 
 
